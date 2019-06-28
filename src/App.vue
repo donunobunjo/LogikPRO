@@ -52,7 +52,7 @@
         <transition name="fade">
             <router-view></router-view>
         </transition>
-        <h1>Helloooooooooloololollloo</h1>
+        
    </main>
   </div>
   <div class="wrapper row5">

@@ -8,10 +8,13 @@
       <nav id="mainav" class="fl_right">
         <ul class="clear">
           <!--<li class="active"><a href="index.html">Home</a></li>-->
-          <li><a href="#">Home</a></li>
+          <!--<li> <a href="#"> <route-link to="/">Home</route-link></a></li>-->
+          <li><router-link to="/" class="nav-link">Home</router-link></li>
           <li><a class="drop" href="#">Register</a>
             <ul>
-              <li><a href="#">Client</a></li>
+              <!--<li><a href="#"><route-link to="/createclient"> Client</route-link></a></li>-->
+              <li><router-link to="/createclient" class="nav-link">New Client</router-link></li>
+             <!-- <router-link to="/" class="nav-link">Home</router-link>-->
               <li><a href="#">Product</a></li>
               
             </ul>
@@ -41,13 +44,16 @@
       
     </header>
   </div>
-    
+  
   
     
   <div class="wrapper row3">
     <main class="hoc container clear"> 
-    
-    </main>
+        <transition name="fade">
+            <router-view></router-view>
+        </transition>
+        <h1>Helloooooooooloololollloo</h1>
+   </main>
   </div>
   <div class="wrapper row5">
     <div id="copyright" class="hoc clear"> 

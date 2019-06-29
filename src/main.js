@@ -18,6 +18,11 @@ Vue.config.productionTip = false
 
 import Home from './components/Home.vue'
 import CreateClient from './components/CreateClient.vue'
+import CreateProduct from './components/CreateProduct.vue'
+import StockIn from './components/StockIn.vue'
+import StockOut from './components/StockOut.vue'
+import ReturnIn from './components/ReturnIn.vue'
+import ReturnOut from './components/ReturnOut.vue'
 
 const routes = [
   {
@@ -26,9 +31,34 @@ const routes = [
       component: Home
   },
   {
-      name: 'create',
+      name: 'createclient',
       path: '/createclient',
       component: CreateClient
+  },
+  {
+    name: 'createproduct',
+    path: '/createproduct',
+    component: CreateProduct
+  },
+  {
+    name: 'stockin',
+    path: '/stockin',
+    component: StockIn
+  },
+  {
+    name: 'stockout',
+    path: '/stockout',
+    component: StockOut
+  },
+  {
+    name: 'returnin',
+    path: '/returnin',
+    component: ReturnIn
+  },
+  {
+    name: 'returnout',
+    path: '/returnout',
+    component: ReturnOut
   }
 ];
 

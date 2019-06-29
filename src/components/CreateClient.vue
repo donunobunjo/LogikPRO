@@ -13,11 +13,7 @@
       <input type="text" class="form-control" id="clientname" placeholder="Client Name">
     </div>
   </div>
-  <!--<div class="form-group">
-    <label for="inputAddress">Address</label>
-    <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
-  </div>-->
-   <div class="form-row">
+  <div class="form-row">
     <div class="form-group col-md-8">
       <label for="contactperson">Contact Person</label>
       <input type="type" class="form-control" id="contactperson" placeholder="Contact person">
@@ -30,13 +26,11 @@
         <option>Supplier</option>
         <option>Customer/Supplier</option>
       </select>
-      <!--<input type="text" class="form-control" id="clienttype" placeholder="Client Name">-->
     </div>
   </div>
   <div class="form-row">
   <div class="form-group col-md-8">
     <label for="address">Address</label>
-    <!--<input type="text" class="form-control" id="address" placeholder="Apartment, studio, or flo">-->
     <textarea id="" cols="60" rows="5"  class="form-control" placeholder="Address...."></textarea>
   </div>
   </div>
@@ -51,7 +45,7 @@
     </div>
     <div class="form-group col-md-2">
       <div class="form-check">
-        <label for="phonenumber">.</label>
+        <label for="dummy">.</label>
         <input class="form-check-input" type="checkbox" id="gridCheck">
         <label class="form-check-label" for="gridCheck">
         Active

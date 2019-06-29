@@ -7,32 +7,35 @@
       </div>
       <nav id="mainav" class="fl_right">
         <ul class="clear">
-          <!--<li class="active"><a href="index.html">Home</a></li>-->
-          <!--<li> <a href="#"> <route-link to="/">Home</route-link></a></li>-->
           <li><router-link to="/" class="nav-link">Home</router-link></li>
           <li><a class="drop" href="#">Register</a>
             <ul>
-              <!--<li><a href="#"><route-link to="/createclient"> Client</route-link></a></li>-->
               <li><router-link to="/createclient" class="nav-link">New Client</router-link></li>
-             <!-- <router-link to="/" class="nav-link">Home</router-link>-->
-              <li><a href="#">Product</a></li>
-              
+              <li><router-link to="/createproduct" class="nav-link">New Product</router-link></li>
             </ul>
           </li>
           <li><a class="drop" href="#">Transaction</a>
             <ul>
-              <li><a href="#">Reciept</a></li>
-              <li><a href="#">Issuance</a></li>
-              <li><a class="drop" href="#">Returns</a>
+              <li><router-link to="/stockin" class="nav-link">Stock In</router-link></li>
+              <li><router-link to="/stockout" class="nav-link">Stock Out</router-link></li>
+              <li><a class="drop" href="#">Return</a>
                 <ul>
-                  <li><a href="#">Inwards</a></li>
-                  <li><a href="#">Outwards</a></li>
+                  <li><router-link to="/returnout" class="nav-link">Outwards</router-link></li>
+                  <li><router-link to="/returnin" class="nav-link">Inwards</router-link></li>
                 </ul>
               </li>
               
             </ul>
           </li>
           <li><a class="drop" href="#">History</a>
+            <ul>
+              <li><a href="#">Client</a></li>
+              <li><a href="">Product</a></li>
+              
+            </ul>
+          </li>
+
+           <li><a class="drop" href="#">Search</a>
             <ul>
               <li><a href="#">Client</a></li>
               <li><a href="">Product</a></li>
@@ -65,12 +68,8 @@
 </template>
 
 <script>
-
-export default {
- 
-}
+export default {};
 </script>
 
 <style>
-
 </style>

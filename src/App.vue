@@ -55,9 +55,9 @@
         <transition name="fade">
             <router-view></router-view>
         </transition>
-        
-   </main>
+    </main>
   </div>
+  
   <div class="wrapper row5">
     <div id="copyright" class="hoc clear"> 
       <p class="fl_left">Copyright &copy; 2019 - All Rights Reserved - <a href="#">LogistikPRO</a></p>

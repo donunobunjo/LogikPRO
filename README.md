@@ -1,4 +1,4 @@
-# vuecrud
+# LogicPRO
 
 ## Project setup
 ```

@@ -52,6 +52,7 @@
               <th>ProductID</th>
               <th>Product Name</th>
               <th>Re-order Level</th>
+              <th>Active</th>
               <th>Actions</th>
             </tr>
             </thead>
@@ -60,8 +61,8 @@
                   <td>{{ product.productid }}</td>
                   <td>{{ product.productname }}</td>
                   <td>{{ product.reorderlevel }}</td>
-                  <td><router-link :to="{name: 'edit', params: { id: product._id }}" class="btn btn-primary">Edit</router-link></td>
-                  <td><button class="btn btn-danger" @click.prevent="deleteProduct(product._id)">Delete</button></td>
+                  <td>{{ product.active }}</td>
+                  <td><router-link :to="{name: 'edit', params: { id: product._id }}" class="btn btn-primary btn-xs">Edit</router-link> <button class="btn btn-danger" @click.prevent="deleteProduct(product._id)">Delete</button></td>
                 </tr>
             </tbody>
         </table>
@@ -93,10 +94,7 @@ export default {
           let uri = "http://localhost:4000/products/add";
           this.axios.post(uri, this.product).then(response => {
             //this.$router.push({name: 'product'});
-            //this.product={};
-            // console.log(response.data._id);
-            //console.log(response.data.productid);
-            //console.log(response.data.productname);
+            this.products.unshift({_id:response.data._id,productid:response.data.productid,productname:response.data.productname,reorderlevel:response.data.reorderlevel,active:response.data.active})
             console.log("successful saved");
           });
 

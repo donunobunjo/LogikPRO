@@ -5,10 +5,10 @@ let Product = require('../model/product.model');
 // Defined store route
 productRoutes.route('/add').post(function (req, res) {
   let product = new Product(req.body);
-  //product.productid = req.body.productid;
-  //product.productname = req.body.productname;
-  //product.reorderlevel = req.body.reorderlevel;
-  //product.active = req.body.active;
+ // product.productid = req.body.productid;
+ // product.productname = req.body.productname;
+ // product.reorderlevel = req.body.reorderlevel;
+ // product.active = req.body.active;
   product.save()
     .then(() => {
       //res.status(200).json({'business': 'business in added successfully'});

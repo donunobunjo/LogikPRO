@@ -94,8 +94,17 @@ export default {
           let uri = "http://localhost:4000/products/add";
           this.axios.post(uri, this.product).then(response => {
             //this.$router.push({name: 'product'});
-            this.products.unshift({_id:response.data._id,productid:response.data.productid,productname:response.data.productname,reorderlevel:response.data.reorderlevel,active:response.data.active})
+            this.products.unshift({
+              _id: response.data._id,
+              productid: response.data.productid,
+              productname: response.data.productname,
+              reorderlevel: response.data.reorderlevel,
+              active: response.data.active
+            });
             console.log("successful saved");
+            this.product={};
+            this.$validator.reset();
+            this.product.active = true;
           });
 
           // console.log("successful saved")
@@ -103,6 +112,12 @@ export default {
           //alert('Please correct all error!')
           console.log("Error occured");
         }
+      });
+    },
+    deleteProduct(id) {
+      let uri = `http://localhost:4000/products/delete/${id}`;
+      this.axios.delete(uri).then(response => {
+        this.products.splice(this.products.indexOf(id), 1);
       });
     }
   }

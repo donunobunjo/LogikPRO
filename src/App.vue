@@ -3,7 +3,7 @@
      <div class="wrapper row1">
     <header id="header" class="hoc clear"> 
           <div id="logo" class="fl_left">
-        <h1><a href="#">logistikPRO</a></h1>
+        <h1><a href="#">logistiksPRO</a></h1>
       </div>
       <nav id="mainav" class="fl_right">
         <ul class="clear">

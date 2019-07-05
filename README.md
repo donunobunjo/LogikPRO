@@ -1,4 +1,4 @@
-# LogicPRO
+# LogistiksPRO
 
 ## Project setup
 ```

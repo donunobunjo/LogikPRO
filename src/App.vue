@@ -12,6 +12,7 @@
             <ul>
               <li><router-link to="/createclient" class="nav-link">New Client</router-link></li>
               <li><router-link to="/createproduct" class="nav-link">New Product</router-link></li>
+              <li><router-link to="/test" class="nav-link">Test</router-link></li>
             </ul>
           </li>
           <li><a class="drop" href="#">Transaction</a>

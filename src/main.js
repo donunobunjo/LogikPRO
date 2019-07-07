@@ -23,8 +23,15 @@ import StockIn from './components/StockIn.vue'
 import StockOut from './components/StockOut.vue'
 import ReturnIn from './components/ReturnIn.vue'
 import ReturnOut from './components/ReturnOut.vue'
+import Test from './components/Test.vue'
+
 
 const routes = [
+  {
+    name: 'test',
+    path: '/test',
+    component: Test
+  },
   {
       name: 'home',
       path: '/',

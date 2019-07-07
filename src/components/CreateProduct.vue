@@ -165,6 +165,27 @@
             },
             editSubmit() {
                 //blank, dont forget the id parameter
+                        this.$validator.validateAll().then(res => {
+                    if (res) {
+                        console.log("no wahala")
+                        /*let uri = "http://localhost:4000/products/add";
+                        this.axios.post(uri, this.product).then(res => {
+                            this.products.unshift({
+                                _id: response.data._id,
+                                productid: response.data.productid,
+                                productname: response.data.productname,
+                                reorderlevel: response.data.reorderlevel,
+                                active: response.data.active
+                            });
+                            console.log("successful saved");
+                            this.product = {};
+                            this.$validator.reset();
+                            this.product.active = true;
+                        });*/
+                    } else {
+                        console.log("Error occured");
+                    }
+                });
             },
             editProduct(product) {
                 this.editId = product._id;

@@ -2,16 +2,16 @@
     <div>
         <h1 class="row justify-content-center">New Product</h1>
 
-        <form @submit.prevent="createProduct">
+        <form @submit.prevent="createProduct('create')">
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="productid">Product ID
                         <span>*</span>
                     </label>
                     <input v-model="product.productid" type="text" class="form-control" id="productid" placeholder="Product ID" name="productid"
-                        v-validate="'required'">
-                    <span v-if="errors.has('productid')" class="errorms">
-                        {{ errors.first('productid') }}
+                        v-validate="'required'" data-vv-scope="create">
+                    <span v-if="errors.has('create.productid')" class="errorms">
+                        {{ errors.first('create.productid') }}
                     </span>
                 </div>
             </div>
@@ -21,9 +21,9 @@
                         <span>*</span>
                     </label>
                     <input v-model="product.productname" type="text" class="form-control" id="productname" placeholder="product Name" name="productname"
-                        v-validate="'required'">
-                    <span v-if="errors.has('productname')" class="errorms">
-                        {{ errors.first('productname') }}
+                        v-validate="'required'" data-vv-scope="create">
+                    <span v-if="errors.has('create.productname')" class="errorms">
+                        {{ errors.first('create.productname') }}
                     </span>
                 </div>
             </div>
@@ -35,9 +35,9 @@
                         <span>*</span>
                     </label>
                     <input v-model="product.reorderlevel" type="number" class="form-control" id="reorderlevel" placeholder="Re-order level" name="reorderlevel"
-                        v-validate="'required|numeric'">
-                    <span v-if="errors.has('reorderlevel')" class="errorms">
-                        {{ errors.first('reorderlevel') }}
+                        v-validate="'required|numeric'" data-vv-scope="create">
+                    <span v-if="errors.has('create.reorderlevel')" class="errorms">
+                        {{ errors.first('create.reorderlevel') }}
                     </span>
                 </div>
             </div>
@@ -69,19 +69,26 @@
                     <tr v-for="product in products" :key="product._id">
                         <template v-if="editId == product._id">
                             <td>
-                                <input v-model="editProduct.productid" type="text" v-validate="'required'" name="editproductid" id="editproductid">
-                                <span v-if="errors.has('editproductid')" class="errorms">
-                                    {{ errors.first('editproductid') }}
+                                <input v-model="editProduct.productid" type="text" v-validate="'required'" name="editproductid" id="editproductid" data-vv-scope="update">
+                                <span v-if="errors.has('update.editproductid')" class="errorms">
+                                    {{ errors.first('update.editproductid') }}
                                 </span>
                             </td>
                             <td>
-                                <input v-model="editProduct.productname" type="text">
+                                <input v-model="editProduct.productname" type="text" v-validate="'required'" name="editproductname" id="editproductname" data-vv-scope="update" >
+                                <span v-if="errors.has('update.editproductname')" class="errorms">
+                                    {{ errors.first('update.editproductname') }}
+                                </span>
                             </td>
                             <td>
-                                <input v-model="editProduct.reorderlevel" type="text">
+                                <input v-model="editProduct.reorderlevel" type="text" v-validate="'required|numeric'" name="editproductreorderlevel" id="editproductreorderlevel" data-vv-scope="update" >
+                                <span v-if="errors.has('update.editproductreorderlevel')" class="errorms">
+                                    {{ errors.first('update.editproductreorderlevel') }}
+                                </span>
                             </td>
                             <td>
-                                <input v-model="editProduct.active" type="text">
+                                <!--<input v-model="editProduct.active" type="text">-->
+                                <input v-model="editProduct.active" type="checkbox">
                             </td>
                             <td>
                                 <!--<span class="icon">
@@ -98,9 +105,10 @@
                             <td>{{ product.productid }}</td>
                             <td>{{ product.productname }}</td>
                             <td>{{ product.reorderlevel }}</td>
-                            <td>{{ product.active }}</td>
+                            <!--<td>{{ product.active }}</td>-->
+                            <td><input v-model="product.active" type="checkbox" disabled></td>
                             <td>
-                                <button class="btn btn-danger" @click.prevent="editProduct(product)">Edit</button>
+                                <button class="btn btn-danger" @click.prevent="edit_Product(product)">Edit</button>
                                 <button class="btn btn-danger" @click.prevent="deleteProduct(product._id)">Delete</button>
                             </td>
                             <!--<td><router-link :to="{name: 'edit', params: { id: product._id }}" class="btn btn-primary btn-xs">Edit</router-link> <button class="btn btn-danger" @click.prevent="deleteProduct(product._id)">Delete</button></td>-->
@@ -126,7 +134,8 @@
                     reorderlevel: "",
                     active: true
                 },
-                editproduct: {
+                editProduct: {
+                    _id:"",
                     productid: "",
                     productname: "",
                     reorderlevel: "",
@@ -136,8 +145,8 @@
             };
         },
         methods: {
-            createProduct() {
-                this.$validator.validateAll().then(res => {
+            createProduct(scope) {
+                this.$validator.validateAll(scope).then(res => {
                     if (res) {
                         //alert('Form successfully submitted!')
                         let uri = "http://localhost:4000/products/add";
@@ -163,35 +172,38 @@
                     }
                 });
             },
-            editSubmit() {
+            editSubmit(idd) {
                 //blank, dont forget the id parameter
-                        this.$validator.validateAll().then(res => {
-                    if (res) {
-                        console.log("no wahala")
-                        /*let uri = "http://localhost:4000/products/add";
-                        this.axios.post(uri, this.product).then(res => {
-                            this.products.unshift({
-                                _id: response.data._id,
-                                productid: response.data.productid,
-                                productname: response.data.productname,
-                                reorderlevel: response.data.reorderlevel,
-                                active: response.data.active
-                            });
-                            console.log("successful saved");
-                            this.product = {};
-                            this.$validator.reset();
-                            this.product.active = true;
-                        });*/
-                    } else {
-                        console.log("Error occured");
-                    }
+                        this.$validator.validateAll('update').then(res => {
+                                if (res) {
+                                    console.log("no wahala");
+                                    console.log(idd);
+                                    /*let uri = "http://localhost:4000/products/add";
+                                    this.axios.post(uri, this.product).then(res => {
+                                        this.products.unshift({
+                                            _id: response.data._id,
+                                            productid: response.data.productid,
+                                            productname: response.data.productname,
+                                            reorderlevel: response.data.reorderlevel,
+                                            active: response.data.active
+                                        });
+                                        console.log("successful saved");
+                                        this.product = {};
+                                        this.$validator.reset();
+                                        this.product.active = true;
+                                    });*/
+                                } else {
+                                    console.log("Error occured");
+                                }
                 });
             },
-            editProduct(product) {
+            edit_Product(product) {
                 this.editId = product._id;
+                this.editProduct._id=product._id;
                 this.editProduct.productid = product.productid;
                 this.editProduct.productname = product.productname;
                 this.editProduct.reorderlevel = product.reorderlevel;
+                this.editProduct.active= product.active;
                 /*this.editId=product._id;
                 console.log("hellllloooooo");
                 console.log(product.productname);

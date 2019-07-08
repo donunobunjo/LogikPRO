@@ -50,7 +50,8 @@ productRoutes.route('/update/:id').post(function (req, res) {
         product.reorderlevel = req.body.reorderlevel;
         product.active = req.body.active;
         product.save().then(() => {
-        res.json('Update complete');
+        //res.json('Update complete');
+        res.json(product);
       })
       .catch(() => {
             res.status(400).send("unable to update the database");

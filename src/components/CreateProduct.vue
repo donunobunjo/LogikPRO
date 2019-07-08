@@ -102,7 +102,7 @@
                             </td>
                         </template>
                         <template v-else>
-                            <td>{{ product.productid }}</td>
+                            <td>{{ product.productid }} {{product._id}} </td>
                             <td>{{ product.productname }}</td>
                             <td>{{ product.reorderlevel }}</td>
                             <!--<td>{{ product.active }}</td>-->
@@ -172,26 +172,24 @@
                     }
                 });
             },
-            editSubmit(idd) {
+            editSubmit(id) {
                 //blank, dont forget the id parameter
                         this.$validator.validateAll('update').then(res => {
                                 if (res) {
                                     console.log("no wahala");
-                                    console.log(idd);
-                                    /*let uri = "http://localhost:4000/products/add";
-                                    this.axios.post(uri, this.product).then(res => {
-                                        this.products.unshift({
-                                            _id: response.data._id,
-                                            productid: response.data.productid,
-                                            productname: response.data.productname,
-                                            reorderlevel: response.data.reorderlevel,
-                                            active: response.data.active
-                                        });
-                                        console.log("successful saved");
-                                        this.product = {};
-                                        this.$validator.reset();
-                                        this.product.active = true;
-                                    });*/
+                                    console.log(id);
+                                    let uri = `http://localhost:4000/products/update/${id}`;
+                                    this.axios.post(uri,this.editProduct).then(response => {
+                                    this.products.splice(this.products.indexOf(id), 1,response.data);
+                                    this.editId = '';
+                                    this.editProduct.productid = '';
+                                    this.editProduct.productname = '';
+                                    this.editProduct.productreorderlevel = '';
+                                    console.log("changed successfuly")
+                                    console.log(response.data._id);
+                                    console.log(response.data.productname);
+                                    });
+                                    
                                 } else {
                                     console.log("Error occured");
                                 }
@@ -204,11 +202,7 @@
                 this.editProduct.productname = product.productname;
                 this.editProduct.reorderlevel = product.reorderlevel;
                 this.editProduct.active= product.active;
-                /*this.editId=product._id;
-                console.log("hellllloooooo");
-                console.log(product.productname);
-                console.log(product._id);
-                console.log(this.editId);*/
+               
             },
             deleteProduct(id) {
                 let uri = `http://localhost:4000/products/delete/${id}`;

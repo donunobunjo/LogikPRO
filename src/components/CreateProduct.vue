@@ -159,7 +159,7 @@
                                 reorderlevel: response.data.reorderlevel,
                                 active: response.data.active
                             });
-                            console.log("successful saved");
+                            //console.log("successful saved");
                             this.product = {};
                             this.$validator.reset();
                             this.product.active = true;
@@ -168,7 +168,7 @@
                         // console.log("successful saved")
                     } else {
                         //alert('Please correct all error!')
-                        console.log("Error occured");
+                        //console.log("Error occured");
                     }
                 });
             },
@@ -176,22 +176,15 @@
                 //blank, dont forget the id parameter
                         this.$validator.validateAll('update').then(res => {
                                 if (res) {
-                                    console.log("no wahala");
-                                    console.log(id);
                                     let uri = `http://localhost:4000/products/update/${id}`;
                                     this.axios.post(uri,this.editProduct).then(response => {
-                                    this.products.splice(this.products.indexOf(id), 1,response.data);
+                                    var loc = this.products.findIndex(x => x._id ===id);
+                                    this.products.splice(loc, 1,response.data);
                                     this.editId = '';
-                                    this.editProduct.productid = '';
-                                    this.editProduct.productname = '';
-                                    this.editProduct.productreorderlevel = '';
-                                    console.log("changed successfuly")
-                                    console.log(response.data._id);
-                                    console.log(response.data.productname);
                                     });
                                     
                                 } else {
-                                    console.log("Error occured");
+                                    //console.log("Error occured");
                                 }
                 });
             },

@@ -34,7 +34,7 @@
                     <label for="reorderlevel">Re-Order Level
                         <span>*</span>
                     </label>
-                    <input v-model="product.reorderlevel" type="number" class="form-control" id="reorderlevel" placeholder="Re-order level" name="reorderlevel"
+                    <input v-model.number="product.reorderlevel" type="number" class="form-control" id="reorderlevel" placeholder="Re-order level" name="reorderlevel"
                         v-validate="'required|numeric'" data-vv-scope="create">
                     <span v-if="errors.has('create.reorderlevel')" class="errorms">
                         {{ errors.first('create.reorderlevel') }}

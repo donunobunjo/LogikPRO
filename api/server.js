@@ -5,6 +5,7 @@ const PORT = 4000;
 const cors = require('cors');
 const mongoose = require('mongoose');
 const config = require('./DB.js');
+////////////////const productRoute = require('./route/product.route');
 const productRoute = require('./route/product.route');
 mongoose.Promise = global.Promise;
 mongoose.connect(config.DB, { useNewUrlParser: true }).then(

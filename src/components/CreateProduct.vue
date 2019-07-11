@@ -102,7 +102,7 @@
                             </td>
                         </template>
                         <template v-else>
-                            <td>{{ product.productid }} {{product._id}} </td>
+                            <td>{{ product.productid }}</td>
                             <td>{{ product.productname }}</td>
                             <td>{{ product.reorderlevel }}</td>
                             <!--<td>{{ product.active }}</td>-->
@@ -200,7 +200,9 @@
             deleteProduct(id) {
                 let uri = `http://localhost:4000/products/delete/${id}`;
                 this.axios.delete(uri).then(response => {
-                    this.products.splice(this.products.indexOf(id), 1);
+                    //////////this.products.splice(this.products.indexOf(id), 1);
+                    var loc = this.products.findIndex(x => x._id ===id);
+                    this.products.splice(loc, 1);
                 });
             },
             cancel(){

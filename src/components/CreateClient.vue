@@ -41,19 +41,19 @@
                 <div class="form-group col-md-2">
                     <label class="radio-inline">
                         Supplier
-                        <input type="radio" name="type" value="Supplier" v-model="client.type">
+                        <input type="radio" name="type" value="Supplier" v-model="client.clientType">
                     </label>
                 </div>
                 <div class="form-group col-md-2">
                     <label class="radio-inline">
                         Customer
-                        <input type="radio" name="type" value="Customer" v-model="client.type">
+                        <input type="radio" name="type" value="Customer" v-model="client.clientType">
                     </label>
                 </div>
                 <div class="form-group col-md-2">
                     <label class="radio-inline">
                         Both
-                        <input type="radio" name="type" value="Both" v-model="client.type">
+                        <input type="radio" name="type" value="Both" v-model="client.clientType">
                     </label>
                 </div>
 
@@ -176,7 +176,7 @@
                             <td><input v-model="client.active" type="checkbox" disabled></td>
                             <td>
                                 <button class="btn btn-danger" @click.prevent="edit_client(client)">Edit</button>
-                                <button class="btn btn-danger" @click.prevent="deleteclient(client._id)">Delete</button>
+                                <button class="btn btn-danger" @click.prevent="deleteClient(client._id)">Delete</button>
                             </td>
                         </template>
                     </tr>
@@ -228,7 +228,7 @@
                                 clientName: response.data.clientName,
                                 contactPerson: response.data.contactPerson,
                                 email: response.data.email,
-                                type: response.data.type,
+                                clientType: response.data.clientType,
                                 address: response.data.address,
                                 phoneNumber: response.data.phoneNumber,
                                 active: response.data.active
@@ -236,18 +236,23 @@
                             this.client = {};
                             this.$validator.reset();
                             this.client.active = true;
+                            this.client.clientType ="Both";
                         });
                     } else {
                         console.log("Invalid");
                     }
                 });
-               /* let uri = "http://localhost:4000/clients/add";
-                this.axios.post(uri, this.client).then(response => {
-                    console.log(response.data.msg);
-                });*/
+            },
+                deleteClient(id) {
+                let uri = `http://localhost:4000/clients/delete/${id}`;
+                this.axios.delete(uri).then(() => {
+                    var loc = this.clients.findIndex(x => x._id ===id);
+                    this.clients.splice(loc, 1);
+                });
+            }
             }
         }
-    };
+    
 </script>
 <style>
     .errorms {

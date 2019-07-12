@@ -105,13 +105,11 @@
                             <td>{{ product.productid }}</td>
                             <td>{{ product.productname }}</td>
                             <td>{{ product.reorderlevel }}</td>
-                            <!--<td>{{ product.active }}</td>-->
                             <td><input v-model="product.active" type="checkbox" disabled></td>
                             <td>
                                 <button class="btn btn-danger" @click.prevent="edit_Product(product)">Edit</button>
                                 <button class="btn btn-danger" @click.prevent="deleteProduct(product._id)">Delete</button>
                             </td>
-                            <!--<td><router-link :to="{name: 'edit', params: { id: product._id }}" class="btn btn-primary btn-xs">Edit</router-link> <button class="btn btn-danger" @click.prevent="deleteProduct(product._id)">Delete</button></td>-->
                         </template>
                     </tr>
                 </tbody>
@@ -148,10 +146,8 @@
             createProduct(scope) {
                 this.$validator.validateAll(scope).then(res => {
                     if (res) {
-                        //alert('Form successfully submitted!')
                         let uri = "http://localhost:4000/products/add";
                         this.axios.post(uri, this.product).then(response => {
-                            //this.$router.push({name: 'product'});
                             this.products.unshift({
                                 _id: response.data._id,
                                 productid: response.data.productid,
@@ -159,7 +155,6 @@
                                 reorderlevel: response.data.reorderlevel,
                                 active: response.data.active
                             });
-                            //console.log("successful saved");
                             this.product = {};
                             this.$validator.reset();
                             this.product.active = true;
@@ -167,14 +162,12 @@
 
                         // console.log("successful saved")
                     } else {
-                        //alert('Please correct all error!')
                         //console.log("Error occured");
                     }
                 });
             },
             editSubmit(id) {
-                //blank, dont forget the id parameter
-                        this.$validator.validateAll('update').then(res => {
+                         this.$validator.validateAll('update').then(res => {
                                 if (res) {
                                     let uri = `http://localhost:4000/products/update/${id}`;
                                     this.axios.post(uri,this.editProduct).then(response => {
@@ -199,8 +192,7 @@
             },
             deleteProduct(id) {
                 let uri = `http://localhost:4000/products/delete/${id}`;
-                this.axios.delete(uri).then(response => {
-                    //////////this.products.splice(this.products.indexOf(id), 1);
+                this.axios.delete(uri).then(() => {
                     var loc = this.products.findIndex(x => x._id ===id);
                     this.products.splice(loc, 1);
                 });

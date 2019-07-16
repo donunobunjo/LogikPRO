@@ -90,7 +90,7 @@
 
             <button type="submit" class="btn btn-primary" @click.prevent="createClient('createClient')">Save</button>
         </form>
-       <div class="row">
+        <div class="row table-responsive">
             <table class="table table-hover">
                 <thead>
                     <tr>
@@ -115,37 +115,50 @@
                                 </span>
                             </td>
                             <td>
-                                <input v-model="editClient.clientName" type="text" v-validate="'required'" name="editclientname" id="editclientname" data-vv-scope="update" >
+                                <input v-model="editClient.clientName" type="text" v-validate="'required'" name="editclientname" id="editclientname" data-vv-scope="update">
                                 <span v-if="errors.has('update.editclientname')" class="errorms">
                                     {{ errors.first('update.editclientname') }}
                                 </span>
                             </td>
                             <td>
-                                <input v-model="editClient.contactPerson" type="text" v-validate="'required'" name="editcontactperson" id="editcontactperson" data-vv-scope="update" >
+                                <input v-model="editClient.contactPerson" type="text" v-validate="'required'" name="editcontactperson" id="editcontactperson"
+                                    data-vv-scope="update">
                                 <span v-if="errors.has('update.editcontactperson')" class="errorms">
                                     {{ errors.first('update.editcontactperson') }}
                                 </span>
                             </td>
                             <td>
-                                <input v-model="editClient.email" type="text" v-validate="'required|email'" name="editemail" id="editemail" data-vv-scope="update" >
+                                <input v-model="editClient.email" type="text" v-validate="'required|email'" name="editemail" id="editemail" data-vv-scope="update">
                                 <span v-if="errors.has('update.editemail')" class="errorms">
                                     {{ errors.first('update.editemail') }}
                                 </span>
                             </td>
                             <td>
-                                <input v-model="editClient.type" type="text" v-validate="'required'" name="edittype" id="edittype" data-vv-scope="update" >
+                                <!--<input v-model="editClient.type" type="text" v-validate="'required'" name="edittype" id="edittype" data-vv-scope="update">
                                 <span v-if="errors.has('update.edittype')" class="errorms">
                                     {{ errors.first('update.edittype') }}
-                                </span>
+                                </span>-->
+                                <label class="radio-inline">
+                                        Supplier
+                                        <input type="radio" name="type" value="Supplier" v-model="editClient.clientType">
+                                </label>
+                                <label class="radio-inline">
+                                        Customer
+                                        <input type="radio" name="type" value="Customer" v-model="editClient.clientType">
+                                </label>
+                                <label class="radio-inline">
+                                        Both
+                                        <input type="radio" name="type" value="Both" v-model="editClient.clientType">
+                                </label>
                             </td>
                             <td>
-                                <input v-model="editClient.address" type="text" v-validate="'required'" name="editaddress" id="editaddress" data-vv-scope="update" >
+                                <input v-model="editClient.address" type="text" v-validate="'required'" name="editaddress" id="editaddress" data-vv-scope="update">
                                 <span v-if="errors.has('update.editaddress')" class="errorms">
                                     {{ errors.first('update.editaddress') }}
                                 </span>
                             </td>
                             <td>
-                                <input v-model="editClient.phoneNumber" type="text" v-validate="'required'" name="phonenumber" id="phonenumber" data-vv-scope="update" >
+                                <input v-model="editClient.phoneNumber" type="text" v-validate="'required'" name="phonenumber" id="phonenumber" data-vv-scope="update">
                                 <span v-if="errors.has('update.editphonenumber')" class="errorms">
                                     {{ errors.first('update.editphonenumber') }}
                                 </span>
@@ -173,7 +186,9 @@
                             <td>{{ client.clientType }}</td>
                             <td>{{ client.address }}</td>
                             <td>{{ client.phoneNumber }}</td>
-                            <td><input v-model="client.active" type="checkbox" disabled></td>
+                            <td>
+                                <input v-model="client.active" type="checkbox" disabled>
+                            </td>
                             <td>
                                 <button class="btn btn-danger" @click.prevent="edit_client(client)">Edit</button>
                                 <button class="btn btn-danger" @click.prevent="deleteClient(client._id)">Delete</button>
@@ -187,75 +202,97 @@
 </template>
 
 <script>
-    export default {
-        data() {
-            return {
-                editId: "",
-                client: {
-                    clientID: "",
-                    clientName: "",
-                    contactPerson: "",
-                    email: "",
-                    clientType: "Both",
-                    address: "",
-                    phoneNumber: "",
-                    active: true
-                },
-                editClient: {
-                    clientID: "",
-                    clientName: "",
-                    contactPerson: "",
-                    email: "",
-                    clientType: "Both",
-                    address: "",
-                    phoneNumber: "",
-                    active: true
-                },
-                clients: []
-            };
-        },
-        methods: {
-            createClient(scope) {
-                this.$validator.validateAll(scope).then(res => {
-                    if (res) {
-                        console.log("validated");
-                            let uri = "http://localhost:4000/clients/add";
-                            this.axios.post(uri, this.client).then(response => {
-                                console.log(response.data);
-                            this.clients.unshift({
-                                _id: response.data._id,
-                                clientID: response.data.clientID,
-                                clientName: response.data.clientName,
-                                contactPerson: response.data.contactPerson,
-                                email: response.data.email,
-                                clientType: response.data.clientType,
-                                address: response.data.address,
-                                phoneNumber: response.data.phoneNumber,
-                                active: response.data.active
-                            });
-                            this.client = {};
-                            this.$validator.reset();
-                            this.client.active = true;
-                            this.client.clientType ="Both";
-                        });
-                    } else {
-                        console.log("Invalid");
-                    }
-                });
-            },
-                deleteClient(id) {
-                let uri = `http://localhost:4000/clients/delete/${id}`;
-                this.axios.delete(uri).then(() => {
-                    var loc = this.clients.findIndex(x => x._id ===id);
-                    this.clients.splice(loc, 1);
-                });
-            }
-            }
+export default {
+  data() {
+    return {
+      editId: "",
+      client: {
+        clientID: "",
+        clientName: "",
+        contactPerson: "",
+        email: "",
+        clientType: "Both",
+        address: "",
+        phoneNumber: "",
+        active: true
+      },
+      editClient: {
+        _id: "",
+        clientID: "",
+        clientName: "",
+        contactPerson: "",
+        email: "",
+        clientType: "Both",
+        address: "",
+        phoneNumber: "",
+        active: true
+      },
+      clients: []
+    };
+  },
+  methods: {
+    createClient(scope) {
+      this.$validator.validateAll(scope).then(res => {
+        if (res) {
+          console.log("validated");
+          let uri = "http://localhost:4000/clients/add";
+          this.axios.post(uri, this.client).then(response => {
+            console.log(response.data);
+            this.clients.unshift({
+              _id: response.data._id,
+              clientID: response.data.clientID,
+              clientName: response.data.clientName,
+              contactPerson: response.data.contactPerson,
+              email: response.data.email,
+              clientType: response.data.clientType,
+              address: response.data.address,
+              phoneNumber: response.data.phoneNumber,
+              active: response.data.active
+            });
+            this.client = {};
+            this.$validator.reset();
+            this.client.active = true;
+            this.client.clientType = "Both";
+          });
+        } else {
+          console.log("Invalid");
         }
-    
+      });
+    },
+    deleteClient(id) {
+      let uri = `http://localhost:4000/clients/delete/${id}`;
+      this.axios.delete(uri).then(() => {
+        var loc = this.clients.findIndex(x => x._id === id);
+        this.clients.splice(loc, 1);
+      });
+    },
+    edit_client(client) {
+      this.editId = client._id;
+      this.editClient._id = client._id;
+      this.editClient.clientID = client.clientID;
+      this.editClient.clientName = client.clientName;
+      this.editClient.contactPerson = client.contactPerson;
+      this.editClient.email = client.email;
+      this.editClient.clientType = client.clientType;
+      this.editClient.address = client.address;
+      this.editClient.phoneNumber = client.phoneNumber;
+      this.editClient.active = client.active;
+    },
+    cancel() {
+      this.editId = "";
+      this.editClient.clientID = "";
+      this.editClient.clientName = "";
+      this.editClient.contactPerson = "";
+      this.editClient.email = "";
+      this.editClient.clientType = "";
+      this.editClient.address = "";
+      this.editClient.phoneNumber = "";
+    }
+  }
+};
 </script>
 <style>
-    .errorms {
-        color: red;
-    }
+.errorms {
+  color: red;
+}
 </style>

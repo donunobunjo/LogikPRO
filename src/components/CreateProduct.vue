@@ -54,7 +54,7 @@
             <button type="submit" class="btn btn-primary">Save</button>
 
         </form>
-        <div class="row">
+        <div class="row table-responsive">
             <table class="table table-hover">
                 <thead>
                     <tr>

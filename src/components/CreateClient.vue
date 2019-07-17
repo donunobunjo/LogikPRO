@@ -278,6 +278,21 @@ export default {
       this.editClient.phoneNumber = client.phoneNumber;
       this.editClient.active = client.active;
     },
+    editSubmit(id) {
+      this.$validator.validateAll("update").then(res => {
+        if (res) {
+          let uri = `http://localhost:4000/clients/update/${id}`;
+          this.axios.post(uri, this.editClient).then(response => {
+            var loc = this.clients.findIndex(x => x._id === id);
+            this.clients.splice(loc, 1, response.data);
+            this.editId = "";
+          });
+        } else {
+          //console.log("Error occured");
+        }
+      });
+    },
+
     cancel() {
       this.editId = "";
       this.editClient.clientID = "";

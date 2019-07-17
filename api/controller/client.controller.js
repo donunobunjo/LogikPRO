@@ -29,10 +29,18 @@ exports.updateClient = function(req, res){
     if (!client)
       res.status(404).send("data is not found");
     else {
-        client.clientid = req.body.clientid;
+        /*client.clientid = req.body.clientid;
         client.clientname = req.body.clientname;
         client.reorderlevel = req.body.reorderlevel;
-        client.active = req.body.active;
+        client.active = req.body.active;*/
+        client.clientID=req.body.clientID;
+        client.clientName=req.body.clientName;
+        client.contactPerson=req.body.contactPerson;
+        client.email=req.body.email;
+        client.clientType=req.body.clientType;
+        client.address=req.body.address;
+        client.phoneNumber=req.body.phoneNumber;
+        client.active=req.body.active;
         client.save().then(() => {
         res.json(client);
       })

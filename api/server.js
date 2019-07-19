@@ -8,6 +8,7 @@ const config = require('./DB.js');
 ////////////////const productRoute = require('./route/product.route');
 const productRoute = require('./route/product.route');
 const clientRoute = require('./route/client.route');
+const transactionRoute = require('./route/transaction.route');
 mongoose.Promise = global.Promise;
 mongoose.connect(config.DB, { useNewUrlParser: true }).then(
   () => {console.log('Database is connected') },
@@ -18,6 +19,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.use('/products', productRoute);
 app.use('/clients',clientRoute);
+app.use('/transactions',transactionRoute);
 app.listen(PORT, function(){
   console.log('Server is running on Port:',PORT);
 });

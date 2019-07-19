@@ -6,7 +6,7 @@
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="clientname">Client</label>
-      <select v-model="stockin.clientname" id="clientname" class="form-control" name="clientname" v-validate="'required'" data-vv-scope="createstockin">
+      <select v-model="stockin.clientName" id="clientname" class="form-control" name="clientname" v-validate="'required'" data-vv-scope="createstockin">
         <option value="" selected>Please Select Client</option>
         <option v-for="client in clients" v-bind:key="client.clientName" :value="client.clientName">{{client.clientName}}</option>
       </select>
@@ -18,7 +18,7 @@
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="productname">Product</label>
-      <select  v-model="stockin.productname" id="productname" class="form-control" name="productname" v-validate="'required'" data-vv-scope="createstockin">
+      <select  v-model="stockin.productName" id="productname" class="form-control" name="productname" v-validate="'required'" data-vv-scope="createstockin">
         <option value="" selected>Please Select Product</option>
         <option v-for="product in products" v-bind:key="product.productname" :value="product.productname">{{product.productname}}</option>
         
@@ -77,7 +77,7 @@ export default {
         clientName: "",
         quantity: ""
       },
-      transactions: [],
+      stockIns: [],
       clients: [],
       products: []
     };
@@ -102,6 +102,19 @@ export default {
     createStockIn(scope) {
       this.$validator.validateAll(scope).then(res => {
         if (res) {
+            let uri = "http://localhost:4000/transactions/createstockin";
+                        this.axios.post(uri, this.stockin).then(response => {
+                            this.stockIns.unshift({
+                                _id: response.data._id,
+                                clientName: response.data.clientName,
+                                productName: response.data.productName,
+                                transDate: response.data.transDate,
+                                quantity: response.data.quantity
+                            });
+                            this.stockin = {};
+                            this.$validator.reset();
+                            //this.product.active = true;
+                        });
             
 
           console.log("successful saved");

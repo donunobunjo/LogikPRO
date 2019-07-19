@@ -8,9 +8,7 @@
       <label for="clientname">Client</label>
       <select v-model="stockin.clientname" id="clientname" class="form-control" name="clientname" v-validate="'required'" data-vv-scope="createstockin">
         <option value="" selected>Please Select Client</option>
-        <option>A</option>
-        <option>B</option>
-        <option>C</option>
+        <option v-for="client in clients" v-bind:key="client.clientName" :value="client.clientName">{{client.clientName}}</option>
       </select>
       <span v-if="errors.has('createstockin.clientname')" class="errorms">
                         {{ errors.first('createstockin.clientname') }}
@@ -89,6 +87,15 @@ export default {
     this.axios.get(uri).then(response => {
       this.products = response.data;
       console.log(response.data);
+      //console.log(`Created`)
+    });
+  },
+  beforeMount() {
+   // console.log(`before Mount!`)
+    let uri = "http://localhost:4000/transactions/getclients";
+    this.axios.get(uri).then(response => {
+    this.clients= response.data;
+    console.log(response.data);
     });
   },
   methods: {

@@ -179,7 +179,7 @@
                                 } else {
                                     //console.log("Error occured");
                                 }
-                });
+                         });
             },
             edit_Product(product) {
                 this.editId = product._id;

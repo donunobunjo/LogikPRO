@@ -67,10 +67,10 @@
                     <tr v-for="stockIn in stockIns" :key="stockIn._id">
                         <template v-if="editId == stockIn._id">
                             <td>
-                                <input v-model="editStockin.clientName" type="text" v-validate="'required'" name="editstockinclient" id="editstockinclient" data-vv-scope="update">
+                                <input v-model="editStockin.clientName" type="text" v-validate="'required'" name="editstockinclient" id="editstockinclient" data-vv-scope="update" disabled >
                             </td>
                             <td>
-                                <input v-model="editStockin.productName" type="text" v-validate="'required'" name="editstockinproduct" id="editstockinproduct" data-vv-scope="update" >
+                                <input v-model="editStockin.productName" type="text" v-validate="'required'" name="editstockinproduct" id="editstockinproduct" data-vv-scope="update" disabled >
                             </td>
                             <td>
                                 <input v-model="editStockin.transDate" type="date" v-validate="'required'" name="editstockintransdate" id="editstockintransdate" data-vv-scope="update" >
@@ -168,12 +168,56 @@ export default {
                             });
                             this.stockin = {};
                             this.$validator.reset();
-                            console.log(response.data);
+                            //console.log(response.data);
                         });
         } else {
           //console.log("Error occured");
         }
       });
+    },
+
+    deleteProduct(id){
+          let uri = `http://localhost:4000/transactions/delete/${id}`;
+                this.axios.delete(uri).then(() => {
+                    var loc = this.stockIns.findIndex(x => x._id ===id);
+                    this.stockIns.splice(loc, 1);
+                });
+    },
+
+    edit_Product(stockIn){
+         this.editId = stockIn._id;
+         this.editStockin._id=stockIn._id;
+         this.editStockin.clientName=stockIn.clientName;
+         this.editStockin.productName=stockIn.productName;
+         this.editStockin.transDate=stockIn.transDate;
+         this.editStockin.quantity=stockIn.in;
+         console.log(stockIn.in);
+    },
+
+    cancel(){
+        this.editId = ''
+        this.editStockin.clientName='';
+        this.editStockin.productName='';
+        this.editStockin.transDate='';
+        this.editStockin.in='';
+    },
+
+    editSubmit(id){
+        console.log(id);
+          this.$validator.validateAll('update').then(res => {
+              if (res) {
+                  let uri = `http://localhost:4000/transactions/update/${id}`;
+                  this.axios.post(uri,this.editStockin).then(response => {
+                  var loc = this.stockIns.findIndex(x => x._id ===id);
+                  this.stockIns.splice(loc, 1,response.data);
+                  this.editId = '';
+                  });
+                  console.log(response.data);
+                  
+              } else {
+                  //console.log("Error occured");
+              }
+          });
     }
   }
 };

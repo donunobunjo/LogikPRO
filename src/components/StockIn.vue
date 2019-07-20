@@ -5,9 +5,9 @@
 <form @submit.prevent="createStockIn('createstockin')">
   <div class="form-row">
     <div class="form-group col-md-6">
-      <label for="clientname">Client</label>
+      <label for="clientname">Supplier</label>
       <select v-model="stockin.clientName" id="clientname" class="form-control" name="clientname" v-validate="'required'" data-vv-scope="createstockin">
-        <option value="" selected>Please Select Client</option>
+        <option value="" selected>Please Select Supplier</option>
         <option v-for="client in clients" v-bind:key="client.clientName" :value="client.clientName">{{client.clientName}}</option>
       </select>
       <span v-if="errors.has('createstockin.clientname')" class="errorms">

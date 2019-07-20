@@ -1,7 +1,12 @@
 const Product = require('../model/product.model');
 //Create Product
 exports.createProduct = function (req, res) {
-    let product = new Product(req.body);
+    //let product = new Product(req.body);
+    let product = new Product();
+    product.productid = req.body.productid;
+    product.productname = req.body.productname.toUpperCase();
+    product.reorderlevel = req.body.reorderlevel;
+    product.active = req.body.active;
     product.save()
        .then(() => {
           res.json(product);
@@ -29,7 +34,7 @@ exports.updateProduct = function(req, res){
       res.status(404).send("data is not found");
     else {
         product.productid = req.body.productid;
-        product.productname = req.body.productname;
+        product.productname = req.body.productname.toUpperCase();
         product.reorderlevel = req.body.reorderlevel;
         product.active = req.body.active;
         product.save().then(() => {

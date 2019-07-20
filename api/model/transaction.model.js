@@ -23,6 +23,9 @@ let Transaction = new Schema({
   out: {
     type: Number
   },
+  transType: {
+    type: String
+  },
 },{
     collection: 'transactions'
 });

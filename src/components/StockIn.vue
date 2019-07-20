@@ -51,6 +51,65 @@
   
   <button type="submit" class="btn btn-primary">Save</button>
 </form>
+
+         <div class="row table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Client</th>
+                        <th>Product</th>
+                        <th>Date</th>
+                        <th>Quantity</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="stockIn in stockIns" :key="stockIn._id">
+                        <template v-if="editId == stockIn._id">
+                            <td>
+                                <input v-model="editStockin.clientName" type="text" v-validate="'required'" name="editstockinclient" id="editstockinclient" data-vv-scope="update">
+                            </td>
+                            <td>
+                                <input v-model="editStockin.productName" type="text" v-validate="'required'" name="editstockinproduct" id="editstockinproduct" data-vv-scope="update" >
+                            </td>
+                            <td>
+                                <input v-model="editStockin.transDate" type="date" v-validate="'required'" name="editstockintransdate" id="editstockintransdate" data-vv-scope="update" >
+                                <span v-if="errors.has('update.editstockintransdate')" class="errorms">
+                                    {{ errors.first('update.editstockintransdate') }}
+                                </span>
+                            </td>
+                            <td>
+                                <input v-model="editStockin.quantity" type="number" v-validate="'required|numeric'" name="editstockinquantity" id="editstockinquantity" data-vv-scope="update" >
+                                <span v-if="errors.has('update.editstockinquantity')" class="errorms">
+                                    {{ errors.first('update.editstockinquantity') }}
+                                </span>
+                            </td>
+                            <td>
+                                <!--<span class="icon">
+                                    <i @click="editSubmit(product._id)" class="fa fa-check"></i>Update
+                                </span>-->
+                                <button class="btn btn-danger" @click.prevent="editSubmit(stockIn._id)">Update</button>
+                                <!--<span class="icon">
+                                    <i @click="cancel" class="fa fa-ban"></i>Cancel
+                                </span>-->
+                                <button class="btn btn-danger" @click.prevent="cancel()">Cancel</button>
+                            </td>
+                        </template>
+                        <template v-else>
+                            <td>{{ stockIn.clientName }}</td>
+                            <td>{{stockIn.productName }}</td>
+                            <td>{{ stockIn.transDate }}</td>
+                            <td>{{ stockIn.in }}</td>
+                            <td>
+                                <button class="btn btn-danger" @click.prevent="edit_Product(stockIn)">Edit</button>
+                                <button class="btn btn-danger" @click.prevent="deleteProduct(stockIn._id)">Delete</button>
+                            </td>
+                        </template>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
     
   </div>
 </template>
@@ -86,16 +145,12 @@ export default {
     let uri = "http://localhost:4000/transactions/getproducts";
     this.axios.get(uri).then(response => {
       this.products = response.data;
-      console.log(response.data);
-      //console.log(`Created`)
     });
   },
   beforeMount() {
-   // console.log(`before Mount!`)
     let uri = "http://localhost:4000/transactions/getclients";
     this.axios.get(uri).then(response => {
     this.clients= response.data;
-    console.log(response.data);
     });
   },
   methods: {
@@ -109,17 +164,14 @@ export default {
                                 clientName: response.data.clientName,
                                 productName: response.data.productName,
                                 transDate: response.data.transDate,
-                                quantity: response.data.quantity
+                                in: response.data.in
                             });
                             this.stockin = {};
                             this.$validator.reset();
-                            //this.product.active = true;
+                            console.log(response.data);
                         });
-            
-
-          console.log("successful saved");
         } else {
-          console.log("Error occured");
+          //console.log("Error occured");
         }
       });
     }

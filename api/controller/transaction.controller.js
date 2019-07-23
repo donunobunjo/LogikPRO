@@ -12,8 +12,19 @@ exports.loadProducts = function (req, res) {
   });
 };
 
-exports.loadClients = function (req, res) {
+exports.loadSuppliers = function (req, res) {
   Client.find({$or:[{clientType:"Both"},{clientType:"Supplier"}],active:true}).sort({ clientName: 1 }).exec(function (err, clients) {
+    if (err) {
+      res.json(err);
+    }
+    else {
+      res.json(clients);
+    }
+  });
+};
+
+exports.loadCustomers = function (req, res) {
+  Client.find({$or:[{clientType:"Both"},{clientType:"Customer"}],active:true}).sort({ clientName: 1 }).exec(function (err, clients) {
     if (err) {
       res.json(err);
     }
@@ -60,6 +71,43 @@ exports.updateTransaction = function(req, res){
         transaction.productName = req.body.productName;
         transaction.transDate = req.body.transDate;
         transaction.in = req.body.quantity;
+        transaction.save().then(() => {
+        res.json(transaction);
+      })
+      .catch(() => {
+            res.status(400).send("unable to update the database");
+      });
+    }
+  });
+}
+
+exports.createStockOut = function (req, res) {
+  //let transaction = new Transaction(req.body);
+  let transaction = new Transaction();
+  transaction.clientName = req.body.clientName;
+  transaction.productName = req.body.productName;
+  transaction.transDate=req.body.transDate;
+  transaction.in=0;
+  transaction.out=req.body.quantity;
+  transaction.transType="StockOut";
+  transaction.save()
+     .then(() => {
+        res.json(transaction);
+     })
+     .catch(() => {
+       res.status(400).send("unable to save to database");
+     });
+};
+
+exports.updateTransactionStockOut = function(req, res){
+  Transaction.findById(req.params.id, function(err, transaction) {
+    if (!transaction)
+      res.status(404).send("data is not found");
+    else {
+        transaction.clientName = req.body.clientName;
+        transaction.productName = req.body.productName;
+        transaction.transDate = req.body.transDate;
+        transaction.out = req.body.quantity;
         transaction.save().then(() => {
         res.json(transaction);
       })

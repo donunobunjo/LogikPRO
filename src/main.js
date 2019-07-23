@@ -26,6 +26,16 @@ import ReturnOut from './components/ReturnOut.vue'
 import Test from './components/Test.vue'
 
 
+
+/*Vue.filter('formatDate',function(value){
+    if(value){
+      return moment(String(value)).format('DD/MM/YYYY')
+    }
+})*/
+
+
+
+
 const routes = [
   {
     name: 'test',

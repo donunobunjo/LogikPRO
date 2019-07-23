@@ -148,7 +148,7 @@ export default {
     });
   },
   beforeMount() {
-    let uri = "http://localhost:4000/transactions/getclients";
+    let uri = "http://localhost:4000/transactions/getsuppliers";
     this.axios.get(uri).then(response => {
     this.clients= response.data;
     });

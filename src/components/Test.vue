@@ -12,6 +12,9 @@
                         {{ errors.first('second.second') }}
         </span>
         <button @click.prevent="validateSecond('second')">second</button>
+        <hr>
+         <button @click.prevent="testing()">test</button>
+
         
     </div>
    
@@ -26,26 +29,36 @@
             },
             methods:{
                 validateFirst(scope){
-                    console.log("heloooo validate first");
+                   // console.log("heloooo validate first");
                     this.$validator.validateAll(scope).then(res => {
                         if (res) {
-                            console.log("success first");
+                            //console.log("success first");
                         }
                         else{
-                            console.log("failure first");
+                            //console.log("failure first");
                         }
                     });
                 },
                  validateSecond(scope){
-                    console.log("heloooo validate second");
+                   // console.log("heloooo validate second");
                     this.$validator.validateAll(scope).then(res => {
                         if (res) {
-                            console.log("success second");
+                           // console.log("success second");
                         }
                         else{
-                            console.log("failure second");
+                            //console.log("failure second");
                         }
                     });
+                },
+                testing(){
+                    console.log('helooooo');
+                        let uri = "http://localhost:4000/test/getaggregate";
+                        this.axios.get(uri).then(response => {
+                           console.log(response.data);
+                          // console.log(response.data.foad);
+                          // console.log(response.data.carol);
+                          //console.log(response.data.lala);
+                        });
                 }
             }
         }

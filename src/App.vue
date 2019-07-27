@@ -12,7 +12,7 @@
             <ul>
               <li><router-link to="/createclient" class="nav-link">New Client</router-link></li>
               <li><router-link to="/createproduct" class="nav-link">New Product</router-link></li>
-              <!--<li><router-link to="/test" class="nav-link">Test</router-link></li>-->
+              <li><router-link to="/test" class="nav-link">Test</router-link></li>
             </ul>
           </li>
           <li><a class="drop" href="#">Transaction</a>
@@ -28,11 +28,12 @@
               
             </ul>
           </li>
-          <li><a class="drop" href="#">History</a>
+          <li><a class="drop" href="#">Timelines</a>
             <ul>
-              <li><a href="#">Client</a></li>
-              <li><a href="">Product</a></li>
-              
+              <!--<li><a href="#">Product</a></li>-->
+              <li><router-link to="/producttimeline" class="nav-link">Product</router-link></li>
+              <li><a href="">Client</a></li>
+              <li><a href="">Product and Client</a></li>
             </ul>
           </li>
 

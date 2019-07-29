@@ -2,6 +2,7 @@ const express = require('express');
 const transactionRouter = express.Router();
 const transactionController = require('../controller/transaction.controller');
 transactionRouter.get('/getproducts', transactionController.loadProducts);
+transactionRouter.get('/getallproducts', transactionController.loadAllProducts);
 transactionRouter.get('/getsuppliers', transactionController.loadSuppliers);
 transactionRouter.get('/getcustomers', transactionController.loadCustomers);
 transactionRouter.post('/createstockin', transactionController.createStockIn);
@@ -9,4 +10,5 @@ transactionRouter.delete('/delete/:id', transactionController.deleteTransaction)
 transactionRouter.post('/update/:id', transactionController.updateTransaction);
 transactionRouter.post('/createstockout', transactionController.createStockOut);
 transactionRouter.post('/updatestockout/:id', transactionController.updateTransactionStockOut);
+transactionRouter.post('/producttimeline', transactionController.productTimeline);
 module.exports = transactionRouter;

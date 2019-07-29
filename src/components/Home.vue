@@ -1,6 +1,7 @@
 <template>
   <div class="row justify-content-center" id="overlay">
-      <h1>Home Component</h1>
+      <h1>Home</h1>
+      <hr>
   </div>
 </template>
 <script>

@@ -1,7 +1,7 @@
 <template>
     <div>
         <h1 class="row justify-content-center">New Product</h1>
-
+        <hr>
         <form @submit.prevent="createProduct('create')">
             <div class="form-row">
                 <div class="form-group col-md-6">

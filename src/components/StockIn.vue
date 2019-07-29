@@ -1,6 +1,7 @@
 <template>
   <div>
     <h1 class="row justify-content-center">Stock In</h1>
+    <hr>
 
 <form @submit.prevent="createStockIn('createstockin')">
   <div class="form-row">

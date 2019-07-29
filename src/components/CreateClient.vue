@@ -1,7 +1,7 @@
 <template>
     <div>
         <h1 class="row justify-content-center">New Client</h1>
-
+        <hr>
         <form>
             <div class="form-row">
                 <div class="form-group col-md-4">

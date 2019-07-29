@@ -1,4 +1,6 @@
 # LogistiksPRO
+LogistiksPro is a SPA for inventory management, it is created using MEVN (Mongo, Express, Vue and Node) suite. 
+LogistiksPro handles stockins/outs, returnsin/out, product balance generation, product/client timeline and reorder report.
 
 ## Project setup
 ```

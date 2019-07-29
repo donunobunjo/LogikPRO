@@ -73,7 +73,7 @@ export default {
                 //this.aggregatesum=response.data.agg;
                 this.alltransactions=response.data.resultset;
                 this.aggregatesum=response.data.agg
-                this.balance= parseInt(this.aggregatesum[0].totalRecieved)-parseInt(this.aggregatesum[0].totalissued)
+                //this.balance= parseInt(this.aggregatesum[0].totalRecieved)-parseInt(this.aggregatesum[0].totalissued)
                 //console.log({msg:"heyyyy"});
             });
             //console.log("heloooooooolalalalal");

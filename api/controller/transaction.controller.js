@@ -23,6 +23,17 @@ exports.loadAllProducts = function (req, res) {
   });
 };
 
+exports.loadAllClients = function (req, res) {
+  Client.find().sort({ clientname: 1 }).exec(function (err, clients) {
+    if (err) {
+      res.json(err);
+    }
+    else {
+      res.json(clients);
+    }
+  });
+};
+
 exports.loadSuppliers = function (req, res) {
   Client.find({$or:[{clientType:"Both"},{clientType:"Supplier"}],active:true}).sort({ clientName: 1 }).exec(function (err, clients) {
     if (err) {
@@ -143,6 +154,30 @@ exports.productTimeline= function(req, res){
   });
 
   Transaction.find({productName:productname}).sort({ transDate: 1 }).exec(function (err, transactions) {
+    if (err) {
+        res.json(err);
+    }
+    else {
+        result.resultset = transactions;
+        res.json(result);
+    }
+});
+}
+
+exports.clientTimeline= function(req, res){
+  let result = {};
+  let clientname=req.body.selecteditem; 
+  Transaction.aggregate([{$match: { clientName: clientname }},{$group: {_id: "$clientName",totalRecieved: { $sum: "$in" },totalIssued: { $sum: "$out" }}}]).exec(function (err, trans) {        
+    if (err) {
+        res.json(err);
+    }
+    else {
+        result.agg = trans;
+       // res.json(result);
+    }
+  });
+
+  Transaction.find({clientName:clientname}).sort({ transDate: 1 }).exec(function (err, transactions) {
     if (err) {
         res.json(err);
     }

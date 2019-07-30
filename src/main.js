@@ -24,6 +24,7 @@ import StockOut from './components/StockOut.vue'
 import ReturnIn from './components/ReturnIn.vue'
 import ReturnOut from './components/ReturnOut.vue'
 import ProductTimeline from './components/ProductTimeline.vue'
+import ClientTimeline from './components/ClientTimeline.vue'
 import Test from './components/Test.vue'
 
 
@@ -82,6 +83,11 @@ const routes = [
     name: 'producttimeline',
     path: '/producttimeline',
     component: ProductTimeline
+  },
+  {
+    name: 'clienttimeline',
+    path: '/clienttimeline',
+    component: ClientTimeline
   }
 ];
 

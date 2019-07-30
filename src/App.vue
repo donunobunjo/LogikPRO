@@ -31,7 +31,7 @@
           <li><a class="drop" href="#">Timelines</a>
             <ul>
               <li><router-link to="/producttimeline" class="nav-link">Product</router-link></li>
-              <li><a href="">Client</a></li>
+              <li><router-link to="/clienttimeline" class="nav-link">Client</router-link></li>
               <li><a href="">Product Vs Client</a></li>
             </ul>
           </li>

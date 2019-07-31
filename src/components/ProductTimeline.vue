@@ -5,7 +5,6 @@
         <form>
             <div class="form-row">
                 <div class="form-group col-md-6">
-                <!--<label for="productname">Product</label>-->
                 <select  v-model="selectedItem.selecteditem" @change="display()" id="productname" class="form-control" name="productname" v-validate="'required'" data-vv-scope="createstockin">
                     <option value="" selected disabled>Select Product</option>
                     <option v-for="product in products" v-bind:key="product.productname" :value="product.productname">{{product.productname}}</option>
@@ -35,7 +34,6 @@
                         <td>{{trans.transDate}}</td>
                         <td>{{trans.in}}</td>
                         <td>{{trans.out}}</td>
-                        <!--<td>70</td>-->
                     </tr>
                     <tr v-for= "agg in aggregatesum" :key="agg._id">
                         <td colspan="4" style="text-align:right">Total</td>
@@ -69,17 +67,13 @@ export default {
     },
     methods:{
         display() {
-            //let productname = this.selectedItem;
            let uri = 'http://localhost:4000/transactions/producttimeline';
             this.axios.post(uri,this.selectedItem).then(response=>{
                 this.alltransactions=response.data.resultset;
                 this.aggregatesum=response.data.agg
                 this.sumrecieved=response.data.agg[0].totalRecieved
                 this.sumissued=response.data.agg[0].totalIssued
-                console.log(response.data.agg[0].totalRecieved);
-                console.log(response.data.agg[0].totalIssued);
             });
-            //console.log("heloooooooolalalalal");
         }
     },
     computed :{

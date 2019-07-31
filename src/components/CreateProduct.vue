@@ -87,13 +87,9 @@
                                 </span>
                             </td>
                             <td>
-                                <!--<input v-model="editProduct.active" type="text">-->
                                 <input v-model="editProduct.active" type="checkbox">
                             </td>
                             <td>
-                                <!--<span class="icon">
-                                    <i @click="editSubmit(product._id)" class="fa fa-check"></i>Update
-                                </span>-->
                                 <button class="btn btn-danger" @click.prevent="editSubmit(product._id)">Update</button>
                                 <!--<span class="icon">
                                     <i @click="cancel" class="fa fa-ban"></i>Cancel
@@ -159,10 +155,8 @@
                             this.$validator.reset();
                             this.product.active = true;
                         });
-
-                        // console.log("successful saved")
                     } else {
-                        //console.log("Error occured");
+                        
                     }
                 });
             },
@@ -177,7 +171,7 @@
                                     });
                                     
                                 } else {
-                                    //console.log("Error occured");
+                                    
                                 }
                          });
             },

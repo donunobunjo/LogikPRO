@@ -32,7 +32,7 @@
             <ul>
               <li><router-link to="/producttimeline" class="nav-link">Product</router-link></li>
               <li><router-link to="/clienttimeline" class="nav-link">Client</router-link></li>
-              <li><a href="">Product Vs Client</a></li>
+              <li><router-link to="/clientproducttimeline" class="nav-link">Client Vs Product</router-link></li>
             </ul>
           </li>
 

@@ -74,10 +74,8 @@
                                 <input v-model="editStockin.productName" type="text" v-validate="'required'" name="editstockinproduct" id="editstockinproduct" data-vv-scope="update" disabled >
                             </td>
                             <td>
-                                <input v-model="editStockin.transDate" type="date" v-validate="'required'" name="editstockintransdate" id="editstockintransdate" data-vv-scope="update" >
-                                <span v-if="errors.has('update.editstockintransdate')" class="errorms">
-                                    {{ errors.first('update.editstockintransdate') }}
-                                </span>
+                                <input v-model="editStockin.transDate" type="date" v-validate="'required'" name="editstockintransdate" id="editstockintransdate" data-vv-scope="update" disabled >
+                                
                             </td>
                             <td>
                                 <input v-model="editStockin.quantity" type="number" v-validate="'required|numeric'" name="editstockinquantity" id="editstockinquantity" data-vv-scope="update" >
@@ -86,13 +84,7 @@
                                 </span>
                             </td>
                             <td>
-                                <!--<span class="icon">
-                                    <i @click="editSubmit(product._id)" class="fa fa-check"></i>Update
-                                </span>-->
-                                <button class="btn btn-danger" @click.prevent="editSubmit(stockIn._id)">Update</button>
-                                <!--<span class="icon">
-                                    <i @click="cancel" class="fa fa-ban"></i>Cancel
-                                </span>-->
+                               <button class="btn btn-danger" @click.prevent="editSubmit(stockIn._id)">Update</button>
                                 <button class="btn btn-danger" @click.prevent="cancel()">Cancel</button>
                             </td>
                         </template>
@@ -169,10 +161,9 @@ export default {
                             });
                             this.stockin = {};
                             this.$validator.reset();
-                            //console.log(response.data);
                         });
         } else {
-          //console.log("Error occured");
+          
         }
       });
     },
@@ -192,7 +183,6 @@ export default {
          this.editStockin.productName=stockIn.productName;
          this.editStockin.transDate=stockIn.transDate;
          this.editStockin.quantity=stockIn.in;
-         console.log(stockIn.in);
     },
 
     cancel(){
@@ -204,7 +194,6 @@ export default {
     },
 
     editSubmit(id){
-        console.log(id);
           this.$validator.validateAll('update').then(res => {
               if (res) {
                   let uri = `http://localhost:4000/transactions/update/${id}`;
@@ -213,10 +202,8 @@ export default {
                   this.stockIns.splice(loc, 1,response.data);
                   this.editId = '';
                   });
-                  console.log(response.data);
-                  
               } else {
-                  //console.log("Error occured");
+                  
               }
           });
     }

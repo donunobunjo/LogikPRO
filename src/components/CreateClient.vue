@@ -234,11 +234,9 @@ export default {
     createClient(scope) {
       this.$validator.validateAll(scope).then(res => {
         if (res) {
-          console.log("validated");
           let uri = "http://localhost:4000/clients/add";
           this.axios.post(uri, this.client).then(response => {
-            console.log(response.data);
-            this.clients.unshift({
+              this.clients.unshift({
               _id: response.data._id,
               clientID: response.data.clientID,
               clientName: response.data.clientName,
@@ -255,7 +253,7 @@ export default {
             this.client.clientType = "Both";
           });
         } else {
-          console.log("Invalid");
+          
         }
       });
     },

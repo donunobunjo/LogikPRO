@@ -187,3 +187,31 @@ exports.clientTimeline= function(req, res){
     }
 });
 }
+
+exports.clientProductTimeline= function(req, res){
+  let result = {};
+  let clientname=req.body.client;
+  let productname=req.body.product; 
+  /*result.clientName=clientname;
+  result.productName=productname;
+  res.json(result);*/
+ Transaction.aggregate([{$match: { $and: [{ clientName: clientname },{productName:productname}]}},{$group: {_id: "$clientName",totalRecieved: { $sum: "$in" },totalIssued: { $sum: "$out" }}}]).exec(function (err, trans) {        
+    if (err) {
+        res.json(err);
+    }
+    else {
+        result.agg = trans;
+       // res.json(result);
+    }
+  });
+
+  Transaction.find({$and: [{clientName:clientname},{productName:productname}]}).sort({ transDate: 1 }).exec(function (err, transactions) {
+    if (err) {
+        res.json(err);
+    }
+    else {
+        result.resultset = transactions;
+        res.json(result);
+    }
+});
+}

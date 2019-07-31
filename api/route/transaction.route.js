@@ -13,4 +13,5 @@ transactionRouter.post('/createstockout', transactionController.createStockOut);
 transactionRouter.post('/updatestockout/:id', transactionController.updateTransactionStockOut);
 transactionRouter.post('/producttimeline', transactionController.productTimeline);
 transactionRouter.post('/clienttimeline', transactionController.clientTimeline);
+transactionRouter.post('/clientproducttimeline', transactionController.clientProductTimeline);
 module.exports = transactionRouter;

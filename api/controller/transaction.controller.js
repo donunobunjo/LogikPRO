@@ -24,7 +24,7 @@ exports.loadAllProducts = function (req, res) {
 };
 
 exports.loadAllClients = function (req, res) {
-  Client.find().sort({ clientname: 1 }).exec(function (err, clients) {
+  Client.find().sort({ clientName: 1 }).exec(function (err, clients) {
     if (err) {
       res.json(err);
     }
@@ -215,3 +215,39 @@ exports.clientProductTimeline= function(req, res){
     }
 });
 }
+
+exports.returnIn = function (req, res) {
+  //let transaction = new Transaction(req.body);
+  let transaction = new Transaction();
+  transaction.clientName = req.body.clientName;
+  transaction.productName = req.body.productName;
+  transaction.transDate=req.body.transDate;
+  transaction.out=0;
+  transaction.in=req.body.quantity;
+  transaction.transType="ReturnInwards";
+  transaction.save()
+     .then(() => {
+        res.json(transaction);
+     })
+     .catch(() => {
+       res.status(400).send("unable to save to database");
+     });
+};
+
+exports.returnOut = function (req, res) {
+  //let transaction = new Transaction(req.body);
+  let transaction = new Transaction();
+  transaction.clientName = req.body.clientName;
+  transaction.productName = req.body.productName;
+  transaction.transDate=req.body.transDate;
+  transaction.in=0;
+  transaction.out=req.body.quantity;
+  transaction.transType="return Outward";
+  transaction.save()
+     .then(() => {
+        res.json(transaction);
+     })
+     .catch(() => {
+       res.status(400).send("unable to save to database");
+     });
+};

@@ -16,4 +16,5 @@ transactionRouter.post('/clienttimeline', transactionController.clientTimeline);
 transactionRouter.post('/clientproducttimeline', transactionController.clientProductTimeline);
 transactionRouter.post('/returnin', transactionController.returnIn);
 transactionRouter.post('/returnout', transactionController.returnOut);
+transactionRouter.post('/chronological', transactionController.chronological);
 module.exports = transactionRouter;

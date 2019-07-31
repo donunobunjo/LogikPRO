@@ -33,6 +33,7 @@
               <li><router-link to="/producttimeline" class="nav-link">Product</router-link></li>
               <li><router-link to="/clienttimeline" class="nav-link">Client</router-link></li>
               <li><router-link to="/clientproducttimeline" class="nav-link">Client Vs Product</router-link></li>
+              <li><router-link to="/chronological" class="nav-link">Chronological</router-link></li>
             </ul>
           </li>
 

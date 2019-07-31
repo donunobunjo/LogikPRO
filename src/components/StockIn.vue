@@ -6,7 +6,9 @@
 <form @submit.prevent="createStockIn('createstockin')">
   <div class="form-row">
     <div class="form-group col-md-6">
-      <label for="clientname">Supplier</label>
+      <label for="clientname">Supplier
+         <span>*</span>
+      </label>
       <select v-model="stockin.clientName" id="clientname" class="form-control" name="clientname" v-validate="'required'" data-vv-scope="createstockin">
         <option value="" selected>Please Select Supplier</option>
         <option v-for="client in clients" v-bind:key="client.clientName" :value="client.clientName">{{client.clientName}}</option>
@@ -18,7 +20,9 @@
   </div>
   <div class="form-row">
     <div class="form-group col-md-6">
-      <label for="productname">Product</label>
+      <label for="productname">Product
+         <span>*</span>
+      </label>
       <select  v-model="stockin.productName" id="productname" class="form-control" name="productname" v-validate="'required'" data-vv-scope="createstockin">
         <option value="" selected>Please Select Product</option>
         <option v-for="product in products" v-bind:key="product.productname" :value="product.productname">{{product.productname}}</option>
@@ -33,7 +37,9 @@
   
   <div class="form-row">
     <div class="form-group col-md-4">
-      <label for="date">Date</label>
+      <label for="date">Date
+         <span>*</span>
+      </label>
       <input v-model="stockin.transDate" type="date" class="form-control" id="date" name ="date" v-validate="'required'" data-vv-scope="createstockin">
       <span v-if="errors.has('createstockin.date')" class="errorms">
                         {{ errors.first('createstockin.date') }}
@@ -42,7 +48,9 @@
   </div> 
   <div class="form-row">  
      <div class="form-group col-md-4">
-      <label for="quantity">Quantity</label>
+      <label for="quantity">Quantity
+         <span>*</span>
+      </label>
       <input v-model="stockin.quantity" type="number" class="form-control" id="quantity" v-validate="'required|numeric'" data-vv-scope="createstockin" name ="quantity">
       <span v-if="errors.has('createstockin.quantity')" class="errorms">
                         {{ errors.first('createstockin.quantity') }}

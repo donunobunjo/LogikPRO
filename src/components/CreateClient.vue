@@ -5,7 +5,9 @@
         <form>
             <div class="form-row">
                 <div class="form-group col-md-4">
-                    <label for="clientid">Client ID</label>
+                    <label for="clientid">Client ID
+                         <span>*</span>
+                    </label>
                     <input type="type" class="form-control" id="clientid" placeholder="Client ID" v-model="client.clientID" name="clientid" v-validate="'required'"
                         data-vv-scope="createClient">
                     <span v-if="errors.has('createClient.clientid')" class="errorms">
@@ -13,7 +15,9 @@
                     </span>
                 </div>
                 <div class="form-group col-md-4">
-                    <label for="clientname">Client Name</label>
+                    <label for="clientname">Client Name
+                         <span>*</span>
+                    </label>
                     <input type="text" class="form-control" id="clientname" placeholder="Client Name" v-model="client.clientName" name="clientname"
                         v-validate="'required'" data-vv-scope="createClient">
                     <span v-if="errors.has('createClient.clientname')" class="errorms">
@@ -21,7 +25,9 @@
                     </span>
                 </div>
                 <div class="form-group col-md-4">
-                    <label for="contactperson">Contact Person</label>
+                    <label for="contactperson">Contact Person
+                         <span>*</span>
+                    </label>
                     <input type="type" class="form-control" id="contactperson" placeholder="Contact person" v-model="client.contactPerson" name="contactperson"
                         v-validate="'required'" data-vv-scope="createClient">
                     <span v-if="errors.has('createClient.contactperson')" class="errorms">
@@ -31,7 +37,9 @@
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
-                    <label for="email">Email</label>
+                    <label for="email">Email
+                         <span>*</span>
+                    </label>
                     <input type="email" class="form-control" id="email" placeholder="Email" v-model="client.email" name="email" v-validate="'required|email'"
                         data-vv-scope="createClient">
                     <span v-if="errors.has('createClient.email')" class="errorms">
@@ -60,7 +68,9 @@
             </div>
             <div class="form-row">
                 <div class="form-group col-md-8">
-                    <label for="address">Address</label>
+                    <label for="address">Address
+                         <span>*</span>
+                    </label>
                     <textarea id="" cols="60" rows="5" class="form-control" placeholder="Address...." v-model="client.address" name="address"
                         v-validate="'required'" data-vv-scope="createClient"></textarea>
                     <span v-if="errors.has('createClient.address')" class="errorms">
@@ -70,7 +80,9 @@
             </div>
             <div class="form-row">
                 <div class="form-group col-md-4">
-                    <label for="phonenumber">Phone Number</label>
+                    <label for="phonenumber">Phone Number
+                         <span>*</span>
+                    </label>
                     <input type="text" class="form-control" id="phonenumber" v-model="client.phoneNumber" name="phonenumber" v-validate="'required'"
                         data-vv-scope="createClient">
                     <span v-if="errors.has('createClient.phonenumber')" class="errorms">

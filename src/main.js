@@ -4,9 +4,9 @@ import App from './App.vue'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import '../public/css/layout.css'
 import '../public/css/framework.css'
-//import '../public/js/jquery.min'
+//import jquery from '../public/js/jquery.min'
 //import '../public/js/jquery.mobilemenu'
-
+//Vue.use(jquery)
 import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 
@@ -28,6 +28,7 @@ import ReturnOut from './components/ReturnOut.vue'
 import ProductTimeline from './components/ProductTimeline.vue'
 import ClientTimeline from './components/ClientTimeline.vue'
 import ClientProductTimeline from './components/ClientProductTimeline.vue'
+import Chronological from './components/Chronological.vue'
 import Test from './components/Test.vue'
 
 
@@ -96,6 +97,11 @@ const routes = [
     name: 'clientproducttimeline',
     path: '/clientproducttimeline',
     component: ClientProductTimeline
+  },
+  {
+    name: 'chronological',
+    path: '/chronological',
+    component: Chronological
   }
 ];
 

@@ -251,3 +251,17 @@ exports.returnOut = function (req, res) {
        res.status(400).send("unable to save to database");
      });
 };
+
+exports.chronological= function(req, res){
+  //let result = {};
+  let startdate=req.body.startdate;
+  let enddate=req.body.enddate; 
+  Transaction.find({transDate:{$gt:startdate,$lt:enddate}}).sort({ transDate: 1 }).exec(function (err, transactions) {
+    if (err) {
+        res.json(err);
+    }
+    else {
+        res.json(transactions);
+    }
+});
+}

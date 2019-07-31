@@ -5,7 +5,9 @@
 <form @submit.prevent="createStockOut('createstockout')">
   <div class="form-row">
     <div class="form-group col-md-6">
-      <label for="clientname">Customer</label>
+      <label for="clientname">Supplier
+         <span>*</span>
+      </label>
       <select v-model="stockout.clientName" id="clientname" class="form-control" name="clientname" v-validate="'required'" data-vv-scope="createstockout">
         <option value="" selected>Please Select Supplier</option>
         <option v-for="client in clients" v-bind:key="client.clientName" :value="client.clientName">{{client.clientName}}</option>
@@ -17,7 +19,9 @@
   </div>
   <div class="form-row">
     <div class="form-group col-md-6">
-      <label for="productname">Product</label>
+      <label for="productname">Product
+         <span>*</span>
+      </label>
       <select  v-model="stockout.productName" id="productname" class="form-control" name="productname" v-validate="'required'" data-vv-scope="createstockout">
         <option value="" selected>Please Select Product</option>
         <option v-for="product in products" v-bind:key="product.productname" :value="product.productname">{{product.productname}}</option>
@@ -32,7 +36,9 @@
   
   <div class="form-row">
     <div class="form-group col-md-4">
-      <label for="date">Date</label>
+      <label for="date">Date
+         <span>*</span>
+      </label>
       <input v-model="stockout.transDate" type="date" class="form-control" id="date" name ="date" v-validate="'required'" data-vv-scope="createstockout">
       <span v-if="errors.has('createstockout.date')" class="errorms">
                         {{ errors.first('createstockout.date') }}
@@ -41,7 +47,9 @@
   </div> 
   <div class="form-row">  
      <div class="form-group col-md-4">
-      <label for="quantity">Quantity</label>
+      <label for="quantity">Quantity
+         <span>*</span>
+      </label>
       <input v-model="stockout.quantity" type="number" class="form-control" id="quantity" v-validate="'required|numeric'" data-vv-scope="createstockout" name ="quantity">
       <span v-if="errors.has('createstockout.quantity')" class="errorms">
                         {{ errors.first('createstockout.quantity') }}

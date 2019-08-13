@@ -29,6 +29,7 @@ import ProductTimeline from './components/ProductTimeline.vue'
 import ClientTimeline from './components/ClientTimeline.vue'
 import ClientProductTimeline from './components/ClientProductTimeline.vue'
 import Chronological from './components/Chronological.vue'
+import productSearch from './components/ProductSearch.vue'
 import Test from './components/Test.vue'
 
 
@@ -102,6 +103,11 @@ const routes = [
     name: 'chronological',
     path: '/chronological',
     component: Chronological
+  },
+  {
+    name: 'ProductSearch',
+    path: '/searchproduct',
+    component: productSearch
   }
 ];
 

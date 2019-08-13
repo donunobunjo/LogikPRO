@@ -12,7 +12,7 @@
             <ul>
               <li><router-link to="/createclient" class="nav-link">New Client</router-link></li>
               <li><router-link to="/createproduct" class="nav-link">New Product</router-link></li>
-              <!--<li><router-link to="/test" class="nav-link">Test</router-link></li>-->
+              <li><router-link to="/test" class="nav-link">Test</router-link></li>
             </ul>
           </li>
           <li><a class="drop" href="#">Transaction</a>
@@ -39,9 +39,8 @@
 
            <li><a class="drop" href="#">Search</a>
             <ul>
+              <li><router-link to="/searchproduct" class="nav-link">Product</router-link></li>
               <li><a href="#">Client</a></li>
-              <li><a href="">Product</a></li>
-              
             </ul>
           </li>
         </ul>

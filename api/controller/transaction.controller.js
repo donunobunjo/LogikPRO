@@ -201,7 +201,7 @@ exports.clientProductTimeline= function(req, res){
     }
     else {
         result.agg = trans;
-       // res.json(result);
+      
     }
   });
 
@@ -256,7 +256,7 @@ exports.chronological= function(req, res){
   //let result = {};
   let startdate=req.body.startdate;
   let enddate=req.body.enddate; 
-  Transaction.find({transDate:{$gt:startdate,$lt:enddate}}).sort({ transDate: 1 }).exec(function (err, transactions) {
+  Transaction.find({transDate:{$gte:startdate,$lte:enddate}}).sort({ transDate: 1 }).exec(function (err, transactions) {
     if (err) {
         res.json(err);
     }

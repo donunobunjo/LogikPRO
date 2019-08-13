@@ -1,12 +1,20 @@
 const Product = require('../model/product.model');
+const Balance = require('../model/balance.model');
 //Create Product
 exports.createProduct = function (req, res) {
     //let product = new Product(req.body);
     let product = new Product();
+    let balance = new Balance();
     product.productid = req.body.productid;
     product.productname = req.body.productname.toUpperCase();
     product.reorderlevel = req.body.reorderlevel;
     product.active = req.body.active;
+    balance.reorderlevel=req.body.reorderlevel;
+    balance.productName = req.body.productname.toUpperCase();
+    balance.in=0;
+    balance.out=0;
+    balance.balance=0;
+    balance.save();
     product.save()
        .then(() => {
           res.json(product);
@@ -43,6 +51,18 @@ exports.updateProduct = function(req, res){
       .catch(() => {
             res.status(400).send("unable to update the database");
       });
+    }
+  });
+}
+//Search product
+exports.searchProduct = function(req, res){
+   //res.json({msg:"hello"})
+   Product.find().sort({ productname: 1 }).exec(function (err, products) {
+    if (err) {
+      res.json(err);
+    }
+    else {
+      res.json(products);
     }
   });
 }

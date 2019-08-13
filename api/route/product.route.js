@@ -7,6 +7,9 @@ productRouter.post('/add', productController.createProduct);
 productRouter.delete('/delete/:id', productController.deleteProduct);
 // update product
 productRouter.post('/update/:id', productController.updateProduct);
+//search product
+productRouter.get('/searchproduct', productController.searchProduct);
+
 module.exports = productRouter;
 
 

@@ -57,17 +57,17 @@ export default {
       searchQ(){
           if(this.searchQ.length>0){
               this.temp=this.products.filter((prod)=>{
-                  return prod.productname.toUpperCase().indexOf(this.searchQ.toUpperCase())>-1
-                  //console.log(result)
+                  //return prod.productname.toUpperCase().indexOf(this.searchQ.toUpperCase())>-1
+                  return Object.keys(prod).some((key)=>{
+                      let string = String(prod[key])
+                      return string.toUpperCase().indexOf(this.searchQ.toUpperCase())>-1
+                  })
               })
-             // console.log(testy)
-              
           }
           else
           {
               this.temp=this.products
           }
-          //console.log(this.searchQ);
       }
   }
 }

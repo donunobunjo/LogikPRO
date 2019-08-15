@@ -100,7 +100,8 @@
                 </div>
             </div>
 
-            <button type="submit" class="btn btn-primary" @click.prevent="createClient('createClient')">Save</button>
+            <!--<button type="submit" class="btn btn-primary" @click.prevent="createClient('createClient')">Save</button>-->
+            <button class="btn" type="submit" @click.prevent="createClient('createClient')"><i class="fa fa-save"></i> Save</button>
         </form>
         <div class="row table-responsive">
             <table class="table table-hover">
@@ -180,14 +181,8 @@
                                 <input v-model="editClient.active" type="checkbox">
                             </td>
                             <td>
-                                <!--<span class="icon">
-                                    <i @click="editSubmit(product._id)" class="fa fa-check"></i>Update
-                                </span>-->
-                                <button class="btn btn-danger" @click.prevent="editSubmit(client._id)">Update</button>
-                                <!--<span class="icon">
-                                    <i @click="cancel" class="fa fa-ban"></i>Cancel
-                                </span>-->
-                                <button class="btn btn-danger" @click.prevent="cancel()">Cancel</button>
+                                <button class="btn btn-danger fa fa-check" @click.prevent="editSubmit(client._id)">Update</button>
+                                <button class="btn btn-danger fa fa-times" @click.prevent="cancel()">Cancel</button>
                             </td>
                         </template>
                         <template v-else>
@@ -202,8 +197,14 @@
                                 <input v-model="client.active" type="checkbox" disabled>
                             </td>
                             <td>
-                                <button class="btn btn-danger" @click.prevent="edit_client(client)">Edit</button>
-                                <button class="btn btn-danger" @click.prevent="deleteClient(client._id)">Delete</button>
+                                <!--<button class="btn btn-danger" @click.prevent="edit_client(client)">Edit</button>
+                                <button class="btn btn-danger" @click.prevent="deleteClient(client._id)">Delete</button>-->
+                                 <span class="icon">
+                                    <i @click.prevent="edit_client(client)" class="fa fa-edit"  style="font-size:36px"></i>
+                                </span>..
+                                <span class="icon">
+                                    <i @click.prevent="deleteClient(client._id)" class="fa fa-trash"  style="font-size:36px;color:red"></i>
+                                </span>
                             </td>
                         </template>
                     </tr>

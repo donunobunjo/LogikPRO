@@ -56,8 +56,7 @@
       </span>
     </div>
   </div>
-  
-  <button type="submit" class="btn btn-primary">Save</button>
+  <button class="btn  btn-success" type="submit"><i class="fa fa-save"></i> Save</button>
 </form>
 
          <div class="row table-responsive">
@@ -90,8 +89,8 @@
                                 </span>
                             </td>
                             <td>
-                               <button class="btn btn-danger" @click.prevent="editSubmit(stockOut._id)">Update</button>
-                               <button class="btn btn-danger" @click.prevent="cancel()">Cancel</button>
+                               <button class="btn btn-danger fa fa-check" @click.prevent="editSubmit(stockOut._id)">Update</button>
+                               <button class="btn btn-danger fa fa-times" @click.prevent="cancel()">Cancel</button>
                             </td>
                         </template>
                         <template v-else>
@@ -100,8 +99,8 @@
                             <td>{{ stockOut.transDate }}</td>
                             <td>{{ stockOut.out }}</td>
                             <td>
-                                <button class="btn btn-danger" @click.prevent="edit_Product(stockOut)">Edit</button>
-                                <button class="btn btn-danger" @click.prevent="deleteProduct(stockOut._id)">Delete</button>
+                                <button class="btn btn-danger fa fa-edit" @click.prevent="edit_Product(stockOut)">Edit</button>
+                                <button class="btn btn-danger fa fa-trash" @click.prevent="deleteProduct(stockOut._id)">Delete</button>
                             </td>
                         </template>
                     </tr>

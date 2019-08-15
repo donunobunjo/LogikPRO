@@ -2,15 +2,13 @@
     <div>
         <h1 class="row justify-content-center">Product Search</h1>
         <hr>
-        <div class="col-md-6">.</div>
-        <div class="col-md-6">
-             
-                <input type="text" placeholder="search" v-model="searchQ">
-                <span>
-                    <i class="fa fa-search"></i>
-                </span>
+        
+
+        <div class="wrapper" style="position: relative;">
+            <i class="fa fa-search" style="position: absolute; top: 10px; left: 165px;"></i>
+            <input type="text" placeholder="Search" v-model="searchQ">
         </div>
-         <div class="row table-responsive">
+        <div v-if="searchQ != ''" class="row table-responsive">
             <table class="table table-hover">
                 <thead>
                     <tr>
@@ -28,8 +26,7 @@
                             <td>{{ product.reorderlevel }}</td>
                             <td><input v-model="product.active" type="checkbox" disabled></td>
                             <td>
-                                <!--<button class="btn btn-danger" @click.prevent="edit_Product(product)">Edit</button>
-                                <button class="btn btn-danger" @click.prevent="deleteProduct(product._id)">Delete</button>-->
+                                <button class="btn btn-danger fa fa-edit"></button>
                             </td>
                     </tr>
                 </tbody>

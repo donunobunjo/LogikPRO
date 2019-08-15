@@ -51,8 +51,8 @@
                     </div>
                 </div>
             </div>
-            <button type="submit" class="btn btn-primary">Save</button>
-
+            <!--<button type="submit" class="btn btn-primary">Save</button>-->
+            <button class="btn  btn-success" type="submit"><i class="fa fa-save"></i> Save</button>
         </form>
         <div class="row table-responsive">
             <table class="table table-hover">
@@ -90,11 +90,8 @@
                                 <input v-model="editProduct.active" type="checkbox">
                             </td>
                             <td>
-                                <button class="btn btn-danger" @click.prevent="editSubmit(product._id)">Update</button>
-                                <!--<span class="icon">
-                                    <i @click="cancel" class="fa fa-ban"></i>Cancel
-                                </span>-->
-                                <button class="btn btn-danger" @click.prevent="cancel()">Cancel</button>
+                                <button class="btn btn-danger fa fa-check" @click.prevent="editSubmit(product._id)">Update</button>
+                                <button class="btn btn-danger fa fa-times" @click.prevent="cancel()">Cancel</button>
                             </td>
                         </template>
                         <template v-else>
@@ -103,8 +100,14 @@
                             <td>{{ product.reorderlevel }}</td>
                             <td><input v-model="product.active" type="checkbox" disabled></td>
                             <td>
-                                <button class="btn btn-danger" @click.prevent="edit_Product(product)">Edit</button>
-                                <button class="btn btn-danger" @click.prevent="deleteProduct(product._id)">Delete</button>
+                                <!--<button class="btn btn-danger" @click.prevent="edit_Product(product)">Edit</button>-->
+                                <!--<button class="btn btn-danger" @click.prevent="deleteProduct(product._id)">Delete</button>-->
+                                <span class="icon">
+                                    <i @click.prevent="edit_Product(product)" class="fa fa-edit"  style="font-size:36px"></i>
+                                </span>..
+                                <span class="icon">
+                                    <i @click.prevent="deleteProduct(product._id)" class="fa fa-trash"  style="font-size:36px;color:red"></i>
+                                </span>
                             </td>
                         </template>
                     </tr>

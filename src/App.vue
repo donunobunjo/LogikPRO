@@ -40,7 +40,7 @@
            <li><a class="drop" href="#">Search</a>
             <ul>
               <li><router-link to="/searchproduct" class="nav-link">Product</router-link></li>
-              <li><a href="#">Client</a></li>
+              <li><router-link to="/searchclient" class="nav-link">Client</router-link></li>
             </ul>
           </li>
         </ul>

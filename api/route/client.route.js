@@ -7,4 +7,6 @@ clientRouter.post('/add', clientController.createClient);
 clientRouter.delete('/delete/:id', clientController.deleteClient);
 // update Client
 clientRouter.post('/update/:id', clientController.updateClient);
+clientRouter.get('/searchclient', clientController.searchClient);
+
 module.exports = clientRouter;

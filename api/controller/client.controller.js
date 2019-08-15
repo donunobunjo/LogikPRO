@@ -55,3 +55,14 @@ exports.updateClient = function(req, res){
   });
 }
 
+exports.searchClient = function(req, res){
+  //res.json({msg:"hello"})
+  Client.find().sort({ clientName: 1 }).exec(function (err, clients) {
+   if (err) {
+     res.json(err);
+   }
+   else {
+     res.json(clients);
+   }
+ });
+}

@@ -26,24 +26,33 @@
                             <td>{{ product.reorderlevel }}</td>
                             <td><input v-model="product.active" type="checkbox" disabled></td>
                             <td>
-                                <button class="btn btn-danger fa fa-edit"></button>
+                                <button class="btn btn-danger fa fa-edit" @click="showModal = true">
+                                   
+                                </button>
                             </td>
                     </tr>
                 </tbody>
             </table>
         </div>
-       
+        <Modal v-if="showModal"  @close="showModal = false">
+            <h3 slot="header">custom header</h3>
+        </Modal>
     </div>
     
 </template>
 <script>
+import Modal from './Modal.vue';
 export default {
+    name:'ProductSearch',
+    components:{
+        Modal
+    },
     data() {
         return {
             searchQ: "",
             products:[],
-            temp:[]
-
+            temp:[],
+            showModal:false,
         }
     },
     created() {
@@ -52,6 +61,9 @@ export default {
       this.products = this.temp = response.data;
      //console.log(response.data);
     });
+  },
+  methods:{
+      
   },
   watch:{
       searchQ(){

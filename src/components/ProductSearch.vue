@@ -35,7 +35,7 @@
             </table>
         </div>
         <Modal v-if="showModal"  @close="showModal = false">
-            <h3 slot="header">custom header</h3>
+            
         </Modal>
     </div>
     

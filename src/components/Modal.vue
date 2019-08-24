@@ -5,25 +5,55 @@
         <div class="modal-container">
 
           <div class="modal-header">
-            <slot name="header">
-              default header
-            </slot>
+                <h1 class="row justify-content-center">Product Edit</h1>
+                <button type="button" class="btn-close" @click="$emit('close')" aria-label="Close modal">x</button>
           </div>
 
           <div class="modal-body">
-            <slot name="body">
-              default body
-            </slot>
+                    
+        <form>
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <label for="productid">Product ID
+                        <span>*</span>
+                    </label>
+                    <input type="text" class="form-control" id="productid" placeholder="Product ID" name="productid">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <label for="productname">Product Name
+                        <span>*</span>
+                    </label>
+                    <input type="text" class="form-control" id="productname" placeholder="product Name" name="productname">
+                </div>
+            </div>
+
+
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <label for="reorderlevel">Re-Order Level
+                        <span>*</span>
+                    </label>
+                    <input type="number" class="form-control" id="reorderlevel" placeholder="Re-order level" name="reorderlevel">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="gridCheck">
+                        <label class="form-check-label" for="gridCheck">
+                            Active
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <!--<button type="submit" class="btn btn-primary">Save</button>-->
+            <button type="button" class="btn btn-close" @click="$emit('close')"><i class="fa fa-times"></i> Cancel</button>
+            <button class="btn  btn-success" type="submit"><i class="fa fa-save"></i> Save</button>
+        </form>
           </div>
 
-          <div class="modal-footer">
-            <slot name="footer">
-              default footer
-              <button class="modal-default-button" @click="$emit('close')">
-                OK
-              </button>
-            </slot>
-          </div>
         </div>
       </div>
     </div>

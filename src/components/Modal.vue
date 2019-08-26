@@ -17,7 +17,7 @@
                     <label for="productid">Product ID
                         <span>*</span>
                     </label>
-                    <input type="text" class="form-control" id="productid" placeholder="Product ID" name="productid">
+                    <input :value="editProduct.productid" type="text" class="form-control" id="productid" placeholder="Product ID" name="productid">
                 </div>
             </div>
             <div class="form-row">
@@ -25,7 +25,7 @@
                     <label for="productname">Product Name
                         <span>*</span>
                     </label>
-                    <input type="text" class="form-control" id="productname" placeholder="product Name" name="productname">
+                    <input :value="editProduct.productname" class="form-control" id="productname" placeholder="product Name" name="productname">
                 </div>
             </div>
 
@@ -35,13 +35,13 @@
                     <label for="reorderlevel">Re-Order Level
                         <span>*</span>
                     </label>
-                    <input type="number" class="form-control" id="reorderlevel" placeholder="Re-order level" name="reorderlevel">
+                    <input :value="editProduct.reorderlevel" type="number" class="form-control" id="reorderlevel" placeholder="Re-order level" name="reorderlevel">
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-12">
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="gridCheck">
+                        <input :checked="editProduct.active" class="form-check-input" type="checkbox" id="gridCheck">
                         <label class="form-check-label" for="gridCheck">
                             Active
                         </label>
@@ -61,6 +61,7 @@
 </template>
 <script>
 export default {
+    props:['editProduct'],
     name:'Modal'
 }
 </script>

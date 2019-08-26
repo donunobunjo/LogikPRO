@@ -26,7 +26,7 @@
                             <td>{{ product.reorderlevel }}</td>
                             <td><input v-model="product.active" type="checkbox" disabled></td>
                             <td>
-                                <button class="btn btn-danger fa fa-edit" @click="showModal = true">
+                                <button class="btn btn-danger fa fa-edit" @click.prevent="edit_Product(product)">
                                    
                                 </button>
                             </td>
@@ -34,7 +34,7 @@
                 </tbody>
             </table>
         </div>
-        <Modal v-if="showModal"  @close="showModal = false">
+        <Modal v-if="showModal"  @close="showModal = false" :editProduct="editProduct">
             
         </Modal>
     </div>
@@ -53,6 +53,13 @@ export default {
             products:[],
             temp:[],
             showModal:false,
+            editProduct: {
+                    _id:"",
+                    productid: "",
+                    productname: "",
+                    reorderlevel: "",
+                    active: true
+            }
         }
     },
     created() {
@@ -63,6 +70,23 @@ export default {
     });
   },
   methods:{
+        edit_Product(product) {
+                this.editProduct._id=product._id;
+                this.editProduct.productid = product.productid;
+                this.editProduct.productname = product.productname;
+                this.editProduct.reorderlevel = product.reorderlevel;
+                this.editProduct.active= product.active;
+                this.showModal = true
+                console.log(this.editProduct.productname);
+                console.log(product.productname);
+                /*this.editId = product._id;
+                this.editProduct._id=product._id;
+                this.editProduct.productid = product.productid;
+                this.editProduct.productname = product.productname;
+                this.editProduct.reorderlevel = product.reorderlevel;
+                this.editProduct.active= product.active;*/
+               
+        },
       
   },
   watch:{

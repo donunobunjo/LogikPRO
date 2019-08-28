@@ -34,7 +34,7 @@
                 </tbody>
             </table>
         </div>
-        <Modal v-if="showModal"  @close="showModal = false" :editProduct="editProduct">
+        <Modal v-if="showModal"  @close="showModal = false" :editProduct="editProduct" @save="saveedit">
             
         </Modal>
     </div>
@@ -77,16 +77,16 @@ export default {
                 this.editProduct.reorderlevel = product.reorderlevel;
                 this.editProduct.active= product.active;
                 this.showModal = true
-                console.log(this.editProduct.productname);
-                console.log(product.productname);
-                /*this.editId = product._id;
-                this.editProduct._id=product._id;
-                this.editProduct.productid = product.productid;
-                this.editProduct.productname = product.productname;
-                this.editProduct.reorderlevel = product.reorderlevel;
-                this.editProduct.active= product.active;*/
+                //console.log(this.editProduct._id);
                
         },
+        saveedit(data,pid){
+            let uri = `http://localhost:4000/products/update/${pid}`;
+            this.axios.post(uri,data).then(response => {
+                var loc = this.temp.findIndex(x => x._id ===pid);
+                this.temp.splice(loc, 1,response.data);
+            });
+        }
       
   },
   watch:{

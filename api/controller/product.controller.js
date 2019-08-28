@@ -43,6 +43,7 @@ exports.updateProduct = function(req, res){
     else {
         product.productid = req.body.productid;
         product.productname = req.body.productname.toUpperCase();
+       // product.productname = req.body.productname;
         product.reorderlevel = req.body.reorderlevel;
         product.active = req.body.active;
         product.save().then(() => {
@@ -53,6 +54,7 @@ exports.updateProduct = function(req, res){
       });
     }
   });
+ // res.json({msg:"Hellooooo"});
 }
 //Search product
 exports.searchProduct = function(req, res){

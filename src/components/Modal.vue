@@ -12,12 +12,13 @@
           <div class="modal-body">
                     
         <form>
+            <input ref = "iden" :value="editProduct._id" class="form-control" id="iden" name="iden" type="text">
             <div class="form-row">
                 <div class="form-group col-md-12">
                     <label for="productid">Product ID
                         <span>*</span>
                     </label>
-                    <input :value="editProduct.productid" type="text" class="form-control" id="productid" placeholder="Product ID" name="productid">
+                    <input ref="productid" :value="editProduct.productid" type="text" class="form-control" id="productid" placeholder="Product ID" name="productid">
                 </div>
             </div>
             <div class="form-row">
@@ -25,7 +26,7 @@
                     <label for="productname">Product Name
                         <span>*</span>
                     </label>
-                    <input :value="editProduct.productname" class="form-control" id="productname" placeholder="product Name" name="productname">
+                    <input ref = "productname" :value="editProduct.productname" class="form-control" id="productname" placeholder="product Name" name="productname">
                 </div>
             </div>
 
@@ -35,13 +36,13 @@
                     <label for="reorderlevel">Re-Order Level
                         <span>*</span>
                     </label>
-                    <input :value="editProduct.reorderlevel" type="number" class="form-control" id="reorderlevel" placeholder="Re-order level" name="reorderlevel">
+                    <input ref = "reorderlevel" :value="editProduct.reorderlevel" type="number" class="form-control" id="reorderlevel" placeholder="Re-order level" name="reorderlevel">
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-12">
                     <div class="form-check">
-                        <input :checked="editProduct.active" class="form-check-input" type="checkbox" id="gridCheck">
+                        <input ref = "active" :checked="editProduct.active" class="form-check-input" type="checkbox" id="gridCheck">
                         <label class="form-check-label" for="gridCheck">
                             Active
                         </label>
@@ -49,8 +50,8 @@
                 </div>
             </div>
             <!--<button type="submit" class="btn btn-primary">Save</button>-->
-            <button type="button" class="btn btn-close" @click="$emit('close')"><i class="fa fa-times"></i> Cancel</button>
-            <button class="btn  btn-success" type="submit"><i class="fa fa-save"></i> Save</button>
+            <button type="button" class="btn btn-close" @click.prevent ="$emit('close')"><i class="fa fa-times"></i> Cancel</button>
+            <button class="btn  btn-success" type="submit" @click.prevent ="editedvalues"><i class="fa fa-save"></i> Save</button>
         </form>
           </div>
 
@@ -62,7 +63,31 @@
 <script>
 export default {
     props:['editProduct'],
-    name:'Modal'
+    name:'Modal',
+    data() {
+        return {
+                 editedproduct: {
+                    _pid:"",
+                    productid: "",
+                    productname: "",
+                    reorderlevel: "",
+                    active: true
+                },
+        }
+    },
+    methods:{
+           editedvalues(){
+              console.log("Helloooooo");
+              this.editedproduct._pid=this.$refs.iden.value;
+              this.editedproduct.productid=this.$refs.productid.value;
+              this.editedproduct.productname=this.$refs.productname.value;
+              this.editedproduct.reorderlevel=this.$refs.reorderlevel.value;
+              this.editedproduct.active=this.$refs.active.checked;
+              console.log(this.editedproduct.productname);
+              console.log(this.editedproduct.active);
+              this.$emit('save',this.editedproduct, this.editedproduct._pid);
+           } 
+    }
 }
 </script>
 

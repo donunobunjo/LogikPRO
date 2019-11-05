@@ -109,7 +109,7 @@
         <div class="wrapper row5">
             <div id="copyright" class="hoc clear">
                 <p class="fl_left">Copyright &copy; 2019 - All Rights Reserved -
-                    <a href="#">LogistikPRO</a>
+                    <a href="#">LogistiksPRO---</a>This app created by Don Unobunjo is for demostration purpose only---08038891940
                 </p>
 
             </div>

@@ -12,7 +12,7 @@
           <div class="modal-body">
                     
         <form>
-            <input ref = "iden" :value="editProduct._id" class="form-control" id="iden" name="iden" type="text">
+            <input ref = "iden" :value="editProduct._id" class="form-control" id="iden" name="iden" type="hidden">
             <div class="form-row">
                 <div class="form-group col-md-12">
                     <label for="productid">Product ID

@@ -34,7 +34,7 @@
                             <td>{{ client.phoneNumber }}</td>
                             <td><input v-model="client.active" type="checkbox" disabled></td>
                             <td>
-                                <button class="btn btn-danger fa fa-edit"></button>
+                                <button class="btn btn-danger fa fa-edit">Edit</button>
                             </td>
                     </tr>
                 </tbody>

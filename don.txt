@@ -1,0 +1,8 @@
+mlab
+dona.unobunjo@gmail.com,,,, sutanod_1
+database user= don,,,, blacksheep_1
+mongodb+srv://don:<password>@cluster0-wcfda.mongodb.net/test?retryWrites=true&w=majority
+
+
+heroku
+dona.unobunjo@gmail.com,,,, sutanod_1

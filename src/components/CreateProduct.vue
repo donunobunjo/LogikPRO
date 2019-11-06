@@ -1,5 +1,9 @@
 <template>
     <div>
+        <loading :active.sync="isLoading" 
+        :can-cancel="false" 
+        :on-cancel="onCancel"
+        :is-full-page="fullPage"></loading>
         <h1 class="row justify-content-center">New Product</h1>
         <hr>
         <form @submit.prevent="createProduct('create')">
@@ -121,6 +125,10 @@
 </template>
 
 <script>
+     // Import component
+    import Loading from 'vue-loading-overlay';
+    // Import stylesheet
+    import 'vue-loading-overlay/dist/vue-loading.css';
     export default {
         data() {
             return {
@@ -138,13 +146,19 @@
                     reorderlevel: "",
                     active: true
                 },
-                products: []
+                products: [],
+                isLoading: false,
+                fullPage: true
             };
+        },
+        components: {
+            Loading
         },
         methods: {
             createProduct(scope) {
                 this.$validator.validateAll(scope).then(res => {
                     if (res) {
+                        this.isLoading = true;
                         let uri = "http://localhost:4000/products/add";
                         this.axios.post(uri, this.product).then(response => {
                             this.products.unshift({
@@ -154,6 +168,7 @@
                                 reorderlevel: response.data.reorderlevel,
                                 active: response.data.active
                             });
+                            this.isLoading =false
                             this.product = {};
                             this.$validator.reset();
                             this.product.active = true;
@@ -166,11 +181,13 @@
             editSubmit(id) {
                          this.$validator.validateAll('update').then(res => {
                                 if (res) {
+                                    this.isLoading = true;
                                     let uri = `http://localhost:4000/products/update/${id}`;
                                     this.axios.post(uri,this.editProduct).then(response => {
                                     var loc = this.products.findIndex(x => x._id ===id);
                                     this.products.splice(loc, 1,response.data);
                                     this.editId = '';
+                                    this.isLoading=false;
                                     });
                                     
                                 } else {
@@ -189,9 +206,11 @@
             },
             deleteProduct(id) {
                 let uri = `http://localhost:4000/products/delete/${id}`;
+                this.isLoading=true;
                 this.axios.delete(uri).then(() => {
                     var loc = this.products.findIndex(x => x._id ===id);
                     this.products.splice(loc, 1);
+                    this.isLoading=false;
                 });
             },
             cancel(){

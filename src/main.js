@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
-
+import Loading from 'vue-loading-overlay'
+import 'vue-loading-overlay/dist/vue-loading.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.min.js'
 import '../public/css/layout.css'
@@ -32,7 +33,7 @@ import ClientProductTimeline from './components/ClientProductTimeline.vue'
 import Chronological from './components/Chronological.vue'
 import productSearch from './components/ProductSearch.vue'
 import clientSearch from './components/ClientSearch.vue'
-import Test from './components/Test.vue'
+import Spinner from './components/spinner.vue'
 
 
 
@@ -47,9 +48,9 @@ import Test from './components/Test.vue'
 
 const routes = [
   {
-    name: 'test',
-    path: '/test',
-    component: Test
+    name: 'spinner',
+    path: '/spinner',
+    component: Spinner
   },
   {
       name: 'home',

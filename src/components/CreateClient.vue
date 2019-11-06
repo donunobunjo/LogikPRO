@@ -1,5 +1,9 @@
 <template>
     <div>
+        <loading :active.sync="isLoading" 
+        :can-cancel="false" 
+        :on-cancel="onCancel"
+        :is-full-page="fullPage"></loading>
         <h1 class="row justify-content-center">New Client</h1>
         <hr>
         <form>
@@ -215,6 +219,10 @@
 </template>
 
 <script>
+// Import component
+    import Loading from 'vue-loading-overlay';
+    // Import stylesheet
+    import 'vue-loading-overlay/dist/vue-loading.css';
 export default {
   data() {
     return {
@@ -240,13 +248,16 @@ export default {
         phoneNumber: "",
         active: true
       },
-      clients: []
+      clients: [],
+      isLoading: false,
+      fullPage: true
     };
   },
   methods: {
     createClient(scope) {
       this.$validator.validateAll(scope).then(res => {
         if (res) {
+            this.isLoading=true
           let uri = "http://localhost:4000/clients/add";
           this.axios.post(uri, this.client).then(response => {
               this.clients.unshift({

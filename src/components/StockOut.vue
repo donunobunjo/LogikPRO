@@ -1,5 +1,9 @@
 <template>
   <div>
+    <loading :active.sync="isLoading" 
+        :can-cancel="false" 
+        :on-cancel="onCancel"
+        :is-full-page="fullPage"></loading>
     <h1 class="row justify-content-center">Stock Out</h1>
     <hr>
 <form @submit.prevent="createStockOut('createstockout')">
@@ -113,6 +117,10 @@
 </template>
 
 <script>
+ // Import component
+import Loading from 'vue-loading-overlay';
+    // Import stylesheet
+import 'vue-loading-overlay/dist/vue-loading.css';
 export default {
   data() {
     return {
@@ -136,8 +144,13 @@ export default {
       },
       stockOuts: [],
       clients: [],
-      products: []
+      products: [],
+      isLoading: false,
+      fullPage: true
     };
+  },
+  components: {
+     Loading
   },
   created() {
     let uri = "http://localhost:4000/transactions/getproducts";
@@ -155,6 +168,7 @@ export default {
     createStockOut(scope) {
       this.$validator.validateAll(scope).then(res => {
         if (res) {
+          this.isLoading=true;
             let uri = "http://localhost:4000/transactions/createstockout";
                         this.axios.post(uri, this.stockout).then(response => {
                             this.stockOuts.unshift({
@@ -166,6 +180,7 @@ export default {
                             });
                             this.stockout = {};
                             this.$validator.reset();
+                            this.isLoading=false;
                         });
         } else {
         
@@ -175,9 +190,11 @@ export default {
 
     deleteProduct(id){
           let uri = `http://localhost:4000/transactions/delete/${id}`;
+                this.isLoading = true
                 this.axios.delete(uri).then(() => {
                     var loc = this.stockOuts.findIndex(x => x._id ===id);
                     this.stockOuts.splice(loc, 1);
+                    this.isLoading=false
                 });
     },
 
@@ -201,11 +218,13 @@ export default {
     editSubmit(id){
           this.$validator.validateAll('update').then(res => {
               if (res) {
+                this.isLoading = true;
                   let uri = `http://localhost:4000/transactions/updatestockout/${id}`;
                   this.axios.post(uri,this.editStockout).then(response => {
                   var loc = this.stockOuts.findIndex(x => x._id ===id);
                   this.stockOuts.splice(loc, 1,response.data);
                   this.editId = '';
+                  this.isLoading = false;
                   });
                } else {
                   

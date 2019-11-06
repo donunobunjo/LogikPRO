@@ -253,6 +253,9 @@ export default {
       fullPage: true
     };
   },
+  components: {
+            Loading
+  },
   methods: {
     createClient(scope) {
       this.$validator.validateAll(scope).then(res => {
@@ -271,6 +274,7 @@ export default {
               phoneNumber: response.data.phoneNumber,
               active: response.data.active
             });
+            this.isLoading = false;
             this.client = {};
             this.$validator.reset();
             this.client.active = true;

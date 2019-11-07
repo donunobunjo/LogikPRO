@@ -182,10 +182,11 @@ export default {
                                 transDate: response.data.transDate,
                                 in: response.data.in
                             });
+                             this.isLoading=false;
                             this.stockin = {};
                             this.$validator.reset();
                         });
-                        this.isLoading=false;
+                       
         } else {
           
         }

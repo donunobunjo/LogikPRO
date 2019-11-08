@@ -17,7 +17,7 @@
     "express": "^4.17.1",
     "jquery": "^3.4.1",
     "moment": "^2.24.0",
-    "mongoose": "^5.5.12",
+    "mongoose": "^5.7.5",
     "nprogress": "^0.2.0",
     "path": "^0.12.7",
     "popper.js": "^1.16.0",

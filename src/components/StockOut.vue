@@ -153,13 +153,15 @@ export default {
      Loading
   },
   created() {
-    let uri = "http://localhost:4000/transactions/getproducts";
+    //let uri = "http://localhost:4000/transactions/getproducts";
+    let uri = "https://logistiks-pro-api.herokuapp.com/transactions/getproducts"
     this.axios.get(uri).then(response => {
       this.products = response.data;
     });
   },
   beforeMount() {
-    let uri = "http://localhost:4000/transactions/getcustomers";
+    //let uri = "http://localhost:4000/transactions/getcustomers";
+    let uri ="https://logistiks-pro-api.herokuapp.com/transactions/getcustomers"
     this.axios.get(uri).then(response => {
     this.clients= response.data;
     });
@@ -169,7 +171,8 @@ export default {
       this.$validator.validateAll(scope).then(res => {
         if (res) {
           this.isLoading=true;
-            let uri = "http://localhost:4000/transactions/createstockout";
+            //let uri = "http://localhost:4000/transactions/createstockout";
+            let uri ="https://logistiks-pro-api.herokuapp.com/transactions/createstockout"
                         this.axios.post(uri, this.stockout).then(response => {
                             this.stockOuts.unshift({
                                 _id: response.data._id,
@@ -189,7 +192,8 @@ export default {
     },
 
     deleteProduct(id){
-          let uri = `http://localhost:4000/transactions/delete/${id}`;
+          //let uri = `http://localhost:4000/transactions/delete/${id}`;
+          let uri = "https://logistiks-pro-api.herokuapp.com/transactions/delete/${id}"
                 this.isLoading = true
                 this.axios.delete(uri).then(() => {
                     var loc = this.stockOuts.findIndex(x => x._id ===id);
@@ -219,7 +223,8 @@ export default {
           this.$validator.validateAll('update').then(res => {
               if (res) {
                 this.isLoading = true;
-                  let uri = `http://localhost:4000/transactions/updatestockout/${id}`;
+                  //let uri = `http://localhost:4000/transactions/updatestockout/${id}`;
+                  let uri = "https://logistiks-pro-api.herokuapp.com/transactions/updatestockout/${id}"
                   this.axios.post(uri,this.editStockout).then(response => {
                   var loc = this.stockOuts.findIndex(x => x._id ===id);
                   this.stockOuts.splice(loc, 1,response.data);

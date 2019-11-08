@@ -74,15 +74,14 @@ export default {
         display() {
             if(this.selectedItem.startdate==""||this.selectedItem.enddate=="")
             {
-                console.log("no nooooo!")
+                
             }
             else{
-                let uri = 'http://localhost:4000/transactions/chronological'
+                //let uri = 'http://localhost:4000/transactions/chronological'
+                let uri = "https://logistiks-pro-api.herokuapp.com/transactions/chronological"
                 this.axios.post(uri,this.selectedItem).then(response=>{
                 this.alltransactions=response.data;
-                console.log(response.data)
                 });
-                console.log("Yes yeahhhhh!")
             }
         },
     }

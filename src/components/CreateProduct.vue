@@ -159,7 +159,8 @@
                 this.$validator.validateAll(scope).then(res => {
                     if (res) {
                         this.isLoading = true;
-                        let uri = "http://localhost:4000/products/add";
+                        //let uri = "http://localhost:4000/products/add";
+                        let uri = "https://logistiks-pro-api.herokuapp.com/products/add";
                         this.axios.post(uri, this.product).then(response => {
                             this.products.unshift({
                                 _id: response.data._id,
@@ -182,7 +183,8 @@
                          this.$validator.validateAll('update').then(res => {
                                 if (res) {
                                     this.isLoading = true;
-                                    let uri = `http://localhost:4000/products/update/${id}`;
+                                    //let uri = `http://localhost:4000/products/update/${id}`;
+                                    let uri = "https://logistiks-pro-api.herokuapp.com/products/update/${id}"
                                     this.axios.post(uri,this.editProduct).then(response => {
                                     var loc = this.products.findIndex(x => x._id ===id);
                                     this.products.splice(loc, 1,response.data);
@@ -205,7 +207,8 @@
                
             },
             deleteProduct(id) {
-                let uri = `http://localhost:4000/products/delete/${id}`;
+                //let uri = `http://localhost:4000/products/delete/${id}`;
+                let uri = "https://logistiks-pro-api.herokuapp.com/products/delete/${id}";
                 this.isLoading=true;
                 this.axios.delete(uri).then(() => {
                     var loc = this.products.findIndex(x => x._id ===id);

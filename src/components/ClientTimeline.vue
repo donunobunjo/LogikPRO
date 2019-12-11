@@ -54,16 +54,16 @@ export default {
      },
     created() {
         //let uri = "http://localhost:4000/transactions/getallclients";
-        let uri = "https://logistiks-pro-api.herokuapp.com/transactions/getallclients"
-        this.axios.get(uri).then(response => {
+        //let uri = "https://logistiks-pro-api.herokuapp.com/transactions/getallclients"
+        this.$axios.get('/transactions/getallclients').then(response => {
         this.clients = response.data;
         });
     },
     methods:{
         display() {
             //let uri = 'http://localhost:4000/transactions/clienttimeline';
-            let uri = "https://logistiks-pro-api.herokuapp.com/transactions/clienttimeline"
-            this.axios.post(uri,this.selectedItem).then(response=>{
+           // let uri = "https://logistiks-pro-api.herokuapp.com/transactions/clienttimeline"
+            this.$axios.post('/transactions/clienttimeline',this.selectedItem).then(response=>{
                 this.alltransactions=response.data.resultset;
                 this.aggregatesum=response.data.agg
                 this.sumrecieved=response.data.agg[0].totalRecieved

@@ -158,15 +158,15 @@ export default {
   },
   created() {
     //let uri = "http://localhost:4000/transactions/getproducts";
-    let uri = "https://logistiks-pro-api.herokuapp.com/transactions/getproducts"
-    this.axios.get(uri).then(response => {
+    //let uri = "https://logistiks-pro-api.herokuapp.com/transactions/getproducts"
+    this.$axios.get('/transactions/getproducts').then(response => {
       this.products = response.data;
     });
   },
   beforeMount() {
     //let uri = "http://localhost:4000/transactions/getsuppliers";
-    let uri = "https://logistiks-pro-api.herokuapp.com/transactions/getsuppliers"
-    this.axios.get(uri).then(response => {
+    //let uri = "https://logistiks-pro-api.herokuapp.com/transactions/getsuppliers"
+    this.$axios.get('/transactions/getsuppliers').then(response => {
     this.clients= response.data;
     });
   },
@@ -176,8 +176,8 @@ export default {
         if (res) {
           this.isLoading=true;
             //let uri = "http://localhost:4000/transactions/createstockin";
-            let uri = "https://logistiks-pro-api.herokuapp.com/transactions/createstockin"
-                        this.axios.post(uri, this.stockin).then(response => {
+            //let uri = "https://logistiks-pro-api.herokuapp.com/transactions/createstockin"
+                        this.$axios.post('/transactions/createstockin', this.stockin).then(response => {
                             this.stockIns.unshift({
                                 _id: response.data._id,
                                 clientName: response.data.clientName,
@@ -198,9 +198,9 @@ export default {
 
     deleteProduct(id){
           //let uri = `http://localhost:4000/transactions/delete/${id}`;
-          let uri ="https://logistiks-pro-api.herokuapp.com/transactions/delete/${id}"
+          //let uri ="https://logistiks-pro-api.herokuapp.com/transactions/delete/${id}"
                 this.isLoading = true;
-                this.axios.delete(uri).then(() => {
+                this.$axios.delete('/transactions/delete/'+encodeURIComponent(id)).then(() => {
                     var loc = this.stockIns.findIndex(x => x._id ===id);
                     this.stockIns.splice(loc, 1);
                     this.isLoading=false;
@@ -229,8 +229,8 @@ export default {
               if (res) {
                 this.isLoading=true;
                   //let uri = `http://localhost:4000/transactions/update/${id}`;
-                  let uri = "https://logistiks-pro-api.herokuapp.com/transactions/update/${id}"
-                  this.axios.post(uri,this.editStockin).then(response => {
+                 // let uri = "https://logistiks-pro-api.herokuapp.com/transactions/update/${id}"
+                  this.$axios.post('/transactions/update/'+encodeURIComponent(id),this.editStockin).then(response => {
                   var loc = this.stockIns.findIndex(x => x._id ===id);
                   this.stockIns.splice(loc, 1,response.data);
                   this.editId = '';

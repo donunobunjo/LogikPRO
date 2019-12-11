@@ -60,17 +60,17 @@ export default {
             }
      },
     created() {
-        let uri = "https://logistiks-pro-api.herokuapp.com/transactions/getallproducts"
+       // let uri = "https://logistiks-pro-api.herokuapp.com/transactions/getallproducts"
         //let uri = "http://localhost:4000/transactions/getallproducts";
-        this.axios.get(uri).then(response => {
+        this.$axios.get('/transactions/getallproducts').then(response => {
         this.products = response.data;
         });
     },
     methods:{
         display() {
-            let uri ="https://logistiks-pro-api.herokuapp.com/transactions/producttimeline"
+            //let uri ="https://logistiks-pro-api.herokuapp.com/transactions/producttimeline"
           // let uri = 'http://localhost:4000/transactions/producttimeline';
-            this.axios.post(uri,this.selectedItem).then(response=>{
+            this.$axios.post('/transactions/producttimeline',this.selectedItem).then(response=>{
                 this.alltransactions=response.data.resultset;
                 this.aggregatesum=response.data.agg
                 this.sumrecieved=response.data.agg[0].totalRecieved

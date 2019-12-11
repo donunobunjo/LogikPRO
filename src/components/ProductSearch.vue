@@ -64,8 +64,8 @@ export default {
     },
     created() {
     //let uri = "http://localhost:4000/products/searchproduct";
-    let uri ="https://logistiks-pro-api.herokuapp.com/products/searchproduct"
-    this.axios.get(uri).then(response => {
+   // let uri ="https://logistiks-pro-api.herokuapp.com/products/searchproduct"
+    this.$axios.get('/products/searchproduct').then(response => {
       this.products = this.temp = response.data;
      //console.log(response.data);
     });
@@ -83,8 +83,8 @@ export default {
         },
         saveedit(data,pid){
             //let uri = `http://localhost:4000/products/update/${pid}`;
-            let uri = "https://logistiks-pro-api.herokuapp.com/products/update/${pid}"
-            this.axios.post(uri,data).then(response => {
+           // let uri = "https://logistiks-pro-api.herokuapp.com/products/update/${pid}"
+            this.$axios.post('/products/update/'+encodeURIComponent(pid),data).then(response => {
                 var loc = this.temp.findIndex(x => x._id ===pid);
                 this.temp.splice(loc, 1,response.data);
             });

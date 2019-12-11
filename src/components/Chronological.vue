@@ -78,8 +78,10 @@ export default {
             }
             else{
                 //let uri = 'http://localhost:4000/transactions/chronological'
-                let uri = "https://logistiks-pro-api.herokuapp.com/transactions/chronological"
-                this.axios.post(uri,this.selectedItem).then(response=>{
+                //let uri = "https://logistiks-pro-api.herokuapp.com/transactions/chronological"
+                
+                //this.axios.post(uri,this.selectedItem).then(response=>{
+                this.$axios.post('/transactions/chronological',this.selectedItem).then(response=>{
                 this.alltransactions=response.data;
                 });
             }

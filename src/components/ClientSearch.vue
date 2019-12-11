@@ -56,8 +56,8 @@ export default {
     },
     created() {
     //let uri = "http://localhost:4000/clients/searchclient";
-    let uri = "https://logistiks-pro-api.herokuapp.com/clients/searchclient"
-    this.axios.get(uri).then(response => {
+    //let uri = "https://logistiks-pro-api.herokuapp.com/clients/searchclient"
+    this.$axios.get('/clients/searchclient').then(response => {
       this.clients = this.temp = response.data;
      //console.log(response.data);
     });

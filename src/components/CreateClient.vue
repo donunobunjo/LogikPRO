@@ -262,8 +262,8 @@ export default {
         if (res) {
             this.isLoading=true
          // let uri = "http://localhost:4000/clients/add";
-         let uri = "https://logistiks-pro-api.herokuapp.com/clients/add";
-          this.axios.post(uri, this.client).then(response => {
+         //let uri = "https://logistiks-pro-api.herokuapp.com/clients/add";
+          this.$axios.post('/clients/add', this.client).then(response => {
               this.clients.unshift({
               _id: response.data._id,
               clientID: response.data.clientID,
@@ -288,8 +288,8 @@ export default {
     },
     deleteClient(id) {
       //let uri = `http://localhost:4000/clients/delete/${id}`;
-      let uri = "https://logistiks-pro-api.herokuapp.com/clients/delete/${id}"
-      this.axios.delete(uri).then(() => {
+      //let uri = "https://logistiks-pro-api.herokuapp.com/clients/delete/${id}"
+      this.$axios.delete('/clients/delete/'+encodeURIComponent(id)).then(() => {
         var loc = this.clients.findIndex(x => x._id === id);
         this.clients.splice(loc, 1);
       });
@@ -310,8 +310,9 @@ export default {
       this.$validator.validateAll("update").then(res => {
         if (res) {
           //let uri = `http://localhost:4000/clients/update/${id}`;
-          let uri = "https://logistiks-pro-api.herokuapp.com/clients/update/${id}"
-          this.axios.post(uri, this.editClient).then(response => {
+          //let uri = "https://logistiks-pro-api.herokuapp.com/clients/update/${id}"
+          //this.$axios.post('/clients/update/${encodeURIComponent(id)}', this.editClient).then(response => {
+            this.$axios.post('/clients/update/'+encodeURIComponent(id), this.editClient).then(response => {
             var loc = this.clients.findIndex(x => x._id === id);
             this.clients.splice(loc, 1, response.data);
             this.editId = "";

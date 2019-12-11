@@ -18,7 +18,12 @@ import VeeValidate from 'vee-validate'
 Vue.use(VeeValidate)
 Vue.use(VueAxios, axios)
 
+//const baseURL = 'http://localhost:8080'
+const baseURL = 'https://logistiks-pro-api.herokuapp.com'
+
 Vue.config.productionTip = false
+
+Vue.prototype.$axios=axios.create({baseURL})
 
 import Home from './components/Home.vue'
 import CreateClient from './components/CreateClient.vue'
